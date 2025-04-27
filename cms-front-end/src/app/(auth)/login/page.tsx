@@ -1,8 +1,9 @@
 "use client";
 import React from "react";
-import { LockOutlined, UserOutlined } from "@ant-design/icons";
-import { Button, Form, Input} from "antd";
+import { UserOutlined } from "@ant-design/icons";
+import { Button, Form, Input } from "antd";
 import { useStyles } from "./style/style";
+import PasswordInput from "@/components/auth-components/password-input/password-input";
 
 const LoginPage: React.FC = () => {
   const { styles } = useStyles();
@@ -33,14 +34,10 @@ const LoginPage: React.FC = () => {
             name="password"
             rules={[{ required: true, message: "Please input your Password!" }]}
           >
-            <Input
-              prefix={<LockOutlined />}
-              type="password"
-              placeholder="Password"
-            />
+            <PasswordInput />
           </Form.Item>
           <Form.Item>
-              <a href="">Forgot password</a>
+            <a href="">Forgot password</a>
           </Form.Item>
 
           <Form.Item>
