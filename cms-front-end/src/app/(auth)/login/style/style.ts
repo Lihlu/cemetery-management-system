@@ -6,7 +6,7 @@ export const useStyles = createStyles({
     justify-content: center;
     align-items: center;
     min-height: 100vh;
-    background-color: #f5f5f5; 
+    background-color: #f5f5f5;
   `,
   formContainer: css`
     max-width: 360px;
