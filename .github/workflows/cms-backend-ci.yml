@@ -1,0 +1,40 @@
+name: Backend CI
+
+on:
+  push:
+    branches:
+      - main
+      - development
+  pull_request:
+    branches:
+      - main
+      - development
+
+jobs:
+  build-test-format:
+    runs-on: ubuntu-latest
+
+    defaults:
+      run:
+        working-directory: ./cms-back-end
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '9.0.x' 
+
+      - name: Restore dependencies
+        run: dotnet restore CemeteryManagementSystem.sln
+
+      - name: Check formatting and unused usings
+        run: dotnet format CemeteryManagementSystem.sln --verify-no-changes --severity error
+
+      - name: Build
+        run: dotnet build CemeteryManagementSystem.sln --no-restore --configuration Release
+
+      - name: Run tests
+        run: dotnet test CemeteryManagementSystem.sln --no-build --configuration Release --verbosity normal
