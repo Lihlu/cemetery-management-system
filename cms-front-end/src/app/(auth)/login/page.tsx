@@ -1,12 +1,51 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { UserOutlined } from "@ant-design/icons";
 import { Button, Form, Input } from "antd";
 import { useStyles } from "./style/style";
 import PasswordInput from "@/components/auth-components/password-input/password-input";
+import { ILoginData } from "@/providers/auth/context";
+import { useAuthActions, useAuthState } from "@/providers/auth";
+import { useRouter } from "next/navigation";
+import { toast } from "@/providers/toast/toast";
 
 const LoginPage: React.FC = () => {
   const { styles } = useStyles();
+  const { loginUser, resetStateFlags } = useAuthActions();
+  const { isSuccess, isError, currentRole } = useAuthState();
+  const router = useRouter();
+
+  const handleSingIn = async (values) => {
+    try {
+      const loginData: ILoginData = {
+        ...values
+      };
+      loginUser(loginData);
+    } catch (error) {
+      toast("Username or password incorrect", "error");
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    if (isSuccess) {
+      resetStateFlags();
+      switch (currentRole) {
+        case "publicuser":
+          router.push("/publicUser");
+          break;
+        case "employee":
+          router.push("/employee");
+          break;
+        default:
+          router.push("/publicUser");
+      }
+    }
+
+    if (isError) {
+      resetStateFlags();
+    }
+  }, [isSuccess, isError]);
 
   return (
     <div className={styles.outerContainer}>
@@ -15,6 +54,7 @@ const LoginPage: React.FC = () => {
           name="login"
           initialValues={{ remember: true }}
           style={{ maxWidth: 360 }}
+          onFinish={handleSingIn}
         >
           <Form.Item
             name="userNameOrEmailAddress"
@@ -44,7 +84,7 @@ const LoginPage: React.FC = () => {
             <Button block type="primary" htmlType="submit">
               Log in
             </Button>
-            or <a href="">Register now!</a>
+            or <a href="/sign-up">Register now!</a>
           </Form.Item>
         </Form>
       </div>
