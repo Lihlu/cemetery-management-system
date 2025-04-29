@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import { Input, Progress } from "antd";
-import { CheckCircleFilled, CloseCircleFilled } from "@ant-design/icons";
+import {
+  CheckCircleFilled,
+  CloseCircleFilled,
+  LockOutlined,
+} from "@ant-design/icons";
 
 interface PasswordInputProps {
   value?: string;
@@ -54,6 +58,7 @@ const PasswordInput: React.FC<PasswordInputProps> = ({
   return (
     <div>
       <Input.Password
+        prefix={<LockOutlined />}
         placeholder="Enter password"
         value={password}
         onChange={handlePasswordChange}

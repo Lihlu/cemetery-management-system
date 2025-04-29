@@ -49,7 +49,6 @@ const LoginPage: React.FC = () => {
 
     if (isError) {
       resetStateFlags();
-      toast("Login failed. Please check your credentials.", "error");
     }
   }, [isSuccess, isError, currentRole, resetStateFlags, router]);
 

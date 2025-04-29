@@ -10,6 +10,17 @@ export interface IUser {
   password: string;
 }
 
+export interface ISignUpData {
+  username: string;
+  name: string;
+  surname: string;
+  email: string;
+  contactNumber: string;
+  nationalIdNumber: string;
+  password: string;
+  confirmPassword: string;
+}
+
 export interface ILoginData {
   userNameOrEmailAddress: string;
   password: string;
@@ -27,7 +38,7 @@ export interface IAuthStateContext {
 export interface IAuthActionContext {
   loginUser: (loginData: ILoginData) => void;
   getCurrentUser: (jwtToken: string) => void;
-  signUp: (user: IUser) => void;
+  signUp: (user: ISignUpData) => void;
   signOut: () => void;
   resetStateFlags: () => void;
   updateRole: (role: string) => void;

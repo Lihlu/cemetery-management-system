@@ -16,7 +16,7 @@ namespace CemeteryManagementSystem.Services.PublicUserService
         {
             _publicUserManager = publicUserManager;
         }
-
+        [AbpAllowAnonymous]
         public override async Task<PublicUserDto> CreateAsync(PublicUserDto input)
         {
             PublicUser publicUser = await _publicUserManager.CreatePublicUserAsync(input.Username, input.Name, input.Surname, input.Email, input.Password, input.ContactNumber, input.NationalIdNumber);

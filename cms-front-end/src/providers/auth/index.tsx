@@ -6,6 +6,7 @@ import {
   AuthStateContext,
   ILoginData,
   INITIAL_STATE,
+  ISignUpData,
   IUser,
 } from "./context";
 import {
@@ -80,9 +81,9 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       });
   };
 
-  const signUp = async (user: IUser) => {
+  const signUp = async (user: ISignUpData) => {
     dispatch(signUpPending());
-    const endpoint = `/api/services/app/Applicant/CreateApplicant`;
+    const endpoint = `/api/services/app/PublicUser/Create`;
 
     await instance
       .post(endpoint, user)
