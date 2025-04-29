@@ -29,6 +29,7 @@ const LoginPage: React.FC = () => {
     let destination = "/";
 
     if (isSuccess) {
+      toast("Login successful", "success");
       shouldNavigate = true;
       switch (currentRole) {
         case "publicuser":
