@@ -25,22 +25,30 @@ const LoginPage: React.FC = () => {
   };
 
   useEffect(() => {
+    let shouldNavigate = false;
+    let destination = "/";
+
     if (isSuccess) {
-      resetStateFlags();
+      shouldNavigate = true;
       switch (currentRole) {
         case "publicuser":
-          router.push("/publicUser");
+          destination = "/publicUser";
           break;
         case "employee":
-          router.push("/employee");
+          destination = "/employee";
           break;
-        default:
-          router.push("/publicUser");
+      }
+
+      resetStateFlags();
+
+      if (shouldNavigate) {
+        router.push(destination);
       }
     }
 
     if (isError) {
       resetStateFlags();
+      toast("Login failed. Please check your credentials.", "error");
     }
   }, [isSuccess, isError, currentRole, resetStateFlags, router]);
 
