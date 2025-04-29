@@ -18,7 +18,7 @@ const LoginPage: React.FC = () => {
   const handleSingIn = async (values) => {
     try {
       const loginData: ILoginData = {
-        ...values
+        ...values,
       };
       loginUser(loginData);
     } catch (error) {

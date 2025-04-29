@@ -21,7 +21,7 @@ export enum AuthActionEnums {
 
 export const loginUserPending = createAction<IAuthStateContext>(
   AuthActionEnums.loginUserPending,
-  () => ({ isPending: true, isSuccess: false, isError: false })
+  () => ({ isPending: true, isSuccess: false, isError: false }),
 );
 export const loginUserSuccess = createAction<IAuthStateContext, string>(
   AuthActionEnums.loginUserSuccess,
@@ -30,16 +30,16 @@ export const loginUserSuccess = createAction<IAuthStateContext, string>(
     isSuccess: true,
     isError: false,
     jwtToken,
-  })
+  }),
 );
 export const loginUserError = createAction<IAuthStateContext>(
   AuthActionEnums.loginUserError,
-  () => ({ isPending: false, isSuccess: false, isError: true })
+  () => ({ isPending: false, isSuccess: false, isError: true }),
 );
 
 export const getCurrentUserPending = createAction<IAuthStateContext>(
   AuthActionEnums.getCurrentUserPending,
-  () => ({ isPending: true, isSuccess: false, isError: false })
+  () => ({ isPending: true, isSuccess: false, isError: false }),
 );
 export const getCurrentUserSuccess = createAction<IAuthStateContext, IUser>(
   AuthActionEnums.getCurrentUserSuccess,
@@ -48,24 +48,24 @@ export const getCurrentUserSuccess = createAction<IAuthStateContext, IUser>(
     isSuccess: true,
     isError: false,
     currentUser,
-  })
+  }),
 );
 export const getCurrentUserError = createAction<IAuthStateContext>(
   AuthActionEnums.getCurrentUserError,
-  () => ({ isPending: false, isSuccess: false, isError: true })
+  () => ({ isPending: false, isSuccess: false, isError: true }),
 );
 
 export const signUpPending = createAction<IAuthStateContext>(
   AuthActionEnums.signUpPending,
-  () => ({ isPending: true, isSuccess: false, isError: false })
+  () => ({ isPending: true, isSuccess: false, isError: false }),
 );
 export const signUpSuccess = createAction<IAuthStateContext>(
   AuthActionEnums.signUpSuccess,
-  () => ({ isPending: false, isSuccess: true, isError: false })
+  () => ({ isPending: false, isSuccess: true, isError: false }),
 );
 export const signUpError = createAction<IAuthStateContext>(
   AuthActionEnums.signUpSuccess,
-  () => ({ isPending: false, isSuccess: false, isError: true })
+  () => ({ isPending: false, isSuccess: false, isError: true }),
 );
 export const signOutUser = createAction<IAuthStateContext>(
   AuthActionEnums.signOutUser,
@@ -83,11 +83,11 @@ export const signOutUser = createAction<IAuthStateContext>(
     },
     jwtToken: undefined,
     currentRole: undefined,
-  })
+  }),
 );
 export const resetStateFlagsAction = createAction<IAuthStateContext>(
   AuthActionEnums.resetStateFlagsAction,
-  () => ({ isPending: false, isSuccess: false, isError: false })
+  () => ({ isPending: false, isSuccess: false, isError: false }),
 );
 export const updateRoleAction = createAction<IAuthStateContext, string>(
   AuthActionEnums.updateRoleAction,
@@ -96,5 +96,5 @@ export const updateRoleAction = createAction<IAuthStateContext, string>(
     isSuccess: false,
     isError: false,
     currentRole,
-  })
+  }),
 );

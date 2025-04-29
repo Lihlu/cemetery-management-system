@@ -61,5 +61,5 @@ export const AuthReducer = handleActions<IAuthStateContext>(
       ...action.payload,
     }),
   },
-  INITIAL_STATE
+  INITIAL_STATE,
 );
