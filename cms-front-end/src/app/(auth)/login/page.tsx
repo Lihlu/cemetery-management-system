@@ -1,20 +1,71 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import { UserOutlined } from "@ant-design/icons";
-import { Button, Form, Input } from "antd";
+import { Button, Form, Input, Spin } from "antd";
 import { useStyles } from "./style/style";
 import PasswordInput from "@/components/auth-components/password-input/password-input";
+import { ILoginData } from "@/providers/auth/context";
+import { useAuthActions, useAuthState } from "@/providers/auth";
+import { useRouter } from "next/navigation";
+import { toast } from "@/providers/toast/toast";
 
 const LoginPage: React.FC = () => {
   const { styles } = useStyles();
+  const { loginUser, resetStateFlags } = useAuthActions();
+  const { isSuccess, isError, isPending, currentRole } = useAuthState();
+  const router = useRouter();
+
+  const handleSignIn = async (values: ILoginData) => {
+    try {
+      loginUser(values);
+    } catch (error) {
+      toast("Username or password incorrect", "error");
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    let shouldNavigate = false;
+    let destination = "/";
+
+    if (isSuccess) {
+      toast("Login successful", "success");
+      shouldNavigate = true;
+      switch (currentRole) {
+        case "publicuser":
+          destination = "/publicUser";
+          break;
+        case "employee":
+          destination = "/employee";
+          break;
+      }
+
+      resetStateFlags();
+
+      if (shouldNavigate) {
+        router.push(destination);
+      }
+    }
+
+    if (isError) {
+      resetStateFlags();
+      toast("Login failed. Please check your credentials.", "error");
+    }
+  }, [isSuccess, isError, currentRole, resetStateFlags, router]);
 
   return (
     <div className={styles.outerContainer}>
+      {isPending && (
+        <div className={styles.loadingOverlay}>
+          <Spin size="large" />
+        </div>
+      )}
       <div className={styles.formContainer}>
         <Form
           name="login"
           initialValues={{ remember: true }}
           style={{ maxWidth: 360 }}
+          onFinish={handleSignIn}
         >
           <Form.Item
             name="userNameOrEmailAddress"
@@ -37,14 +88,14 @@ const LoginPage: React.FC = () => {
             <PasswordInput />
           </Form.Item>
           <Form.Item>
-            <a href="">Forgot password</a>
+            <a href="/forgot-password">Forgot password</a>
           </Form.Item>
 
           <Form.Item>
-            <Button block type="primary" htmlType="submit">
+            <Button block type="primary" htmlType="submit" disabled={isPending}>
               Log in
             </Button>
-            or <a href="">Register now!</a>
+            or <a href="/sign-up">Register now!</a>
           </Form.Item>
         </Form>
       </div>
