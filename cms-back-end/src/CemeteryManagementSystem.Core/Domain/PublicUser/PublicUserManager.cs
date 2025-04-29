@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Threading.Tasks;
 using Abp.Domain.Repositories;
+using Abp.Domain.Services;
 using Abp.UI;
 using CemeteryManagementSystem.Authorization.Users;
 
 namespace CemeteryManagementSystem.Domain.PublicUser
 {
-    public class PublicUserManager
+    public class PublicUserManager : DomainService
     {
         private readonly UserManager _userManager;
         IRepository<PublicUser, Guid> _publicUserRepository;
@@ -70,6 +71,26 @@ namespace CemeteryManagementSystem.Domain.PublicUser
             await _addressRepository.InsertAsync(address);
 
             return publicUser;
+        }
+
+        public async Task<Address> UpdateAddressAsync(Guid publicUserId, int streetNumber, string streetName, string complexOrEstateAddress, string city, string province, string postalCode)
+        {
+            var existingAddress = await _addressRepository.FirstOrDefaultAsync(a => a.PublicUserId == publicUserId);
+            if (existingAddress == null)
+            {
+                throw new UserFriendlyException("User's address not found");
+            }
+
+            existingAddress.StreetNumber = streetNumber;
+            existingAddress.StreetName = streetName;
+            existingAddress.ComplexOrEstateAddress = complexOrEstateAddress;
+            existingAddress.City = city;
+            existingAddress.Province = province;
+            existingAddress.PostalCode = postalCode;
+
+            var updatedAddress = await _addressRepository.UpdateAsync(existingAddress);
+
+            return updatedAddress;
         }
     }
 }
