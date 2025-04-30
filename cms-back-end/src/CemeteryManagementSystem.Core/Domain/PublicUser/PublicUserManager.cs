@@ -10,8 +10,8 @@ namespace CemeteryManagementSystem.Domain.PublicUser
     public class PublicUserManager : DomainService
     {
         private readonly UserManager _userManager;
-        IRepository<PublicUser, Guid> _publicUserRepository;
-        IRepository<Address, Guid> _addressRepository;
+        private readonly IRepository<PublicUser, Guid> _publicUserRepository;
+        private readonly IRepository<Address, Guid> _addressRepository;
         public PublicUserManager(UserManager userManager, IRepository<PublicUser, Guid> publicUserRepository, IRepository<Address, Guid> addressRepository)
         {
             _userManager = userManager;

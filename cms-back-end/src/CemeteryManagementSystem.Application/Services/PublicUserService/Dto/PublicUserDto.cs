@@ -25,6 +25,7 @@ namespace CemeteryManagementSystem.Services.PublicUserService.Dto
         [Required]
         [StringLength(13, ErrorMessage = "Please make sure Identity Number is 13 digits")]
         public string NationalIdNumber { get; set; }
+        [Required]
         public string Password { get; set; }
     }
 }
