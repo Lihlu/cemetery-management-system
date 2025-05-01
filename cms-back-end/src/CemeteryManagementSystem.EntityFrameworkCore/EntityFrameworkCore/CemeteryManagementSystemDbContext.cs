@@ -8,6 +8,7 @@ using CemeteryManagementSystem.MultiTenancy;
 using Microsoft.EntityFrameworkCore;
 using CemeteryManagementSystem.Domain.Employee;
 using CemeteryManagementSystem.Domain.DeceasedPerson;
+using CemeteryManagementSystem.Domain.CemeterySection;
 
 namespace CemeteryManagementSystem.EntityFrameworkCore;
 
@@ -18,6 +19,7 @@ public class CemeteryManagementSystemDbContext : AbpZeroDbContext<Tenant, Role, 
     public DbSet<Address> Addresses { get; set; }
     public DbSet<Employee> Employees { get; set; }
     public DbSet<DeceasedPerson> DeceasedPeople { get; set; }
+    public DbSet<CemeterySection> CemeterySections { get; set; }
     public CemeteryManagementSystemDbContext(DbContextOptions<CemeteryManagementSystemDbContext> options)
         : base(options)
     {
