@@ -1,7 +1,5 @@
 using System;
 using Abp.Domain.Entities.Auditing;
-using CemeteryManagementSystem.Domain;
-using CemeteryManagementSystem.Domain;
 
 namespace CemeteryManagementSystem.Domain.GraveSite
 {
@@ -10,8 +8,8 @@ namespace CemeteryManagementSystem.Domain.GraveSite
         public Guid CemeterySectionId { get; set; }
         public string SiteNumber { get; set; }
         public bool IsExtraDeep { get; set; }
-        public string GraveType { get; set; }   
-        public string Occupant1IdNumber { get; set; }   
-        public string Occupant2IdNumber { get; set; }   
+        public string GraveType { get; set; }
+        public string Occupant1IdNumber { get; set; }
+        public string Occupant2IdNumber { get; set; }
     }
 }
