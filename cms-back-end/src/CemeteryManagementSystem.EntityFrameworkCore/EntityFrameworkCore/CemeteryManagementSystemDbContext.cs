@@ -10,6 +10,7 @@ using CemeteryManagementSystem.Domain.Employee;
 using CemeteryManagementSystem.Domain.DeceasedPerson;
 using CemeteryManagementSystem.Domain.CemeterySection;
 using CemeteryManagementSystem.Domain.GraveSite;
+using CemeteryManagementSystem.Domain.Bookings;
 
 namespace CemeteryManagementSystem.EntityFrameworkCore;
 
@@ -22,6 +23,7 @@ public class CemeteryManagementSystemDbContext : AbpZeroDbContext<Tenant, Role, 
     public DbSet<DeceasedPerson> DeceasedPeople { get; set; }
     public DbSet<CemeterySection> CemeterySections { get; set; }
     public DbSet<GraveSite> GraveSites { get; set; }
+    public DbSet<Booking> Bookings { get; set; }
     public CemeteryManagementSystemDbContext(DbContextOptions<CemeteryManagementSystemDbContext> options)
         : base(options)
     {
