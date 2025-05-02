@@ -2,12 +2,12 @@
 using System.ComponentModel.DataAnnotations;
 using Abp.Application.Services.Dto;
 using Abp.AutoMapper;
-using CemeteryManagementSystem.Domain.PublicUser;
+using CemeteryManagementSystem.Domain.Employee;
 
-namespace CemeteryManagementSystem.Services.PublicUserService.Dto
+namespace CemeteryManagementSystem.Services.EmployeeService.Dto
 {
-    [AutoMap(typeof(PublicUser))]
-    public class PublicUserDto : EntityDto<Guid>
+    [AutoMap(typeof(Employee))]
+    public class EmployeeDto : EntityDto<Guid>
     {
         [Required]
         public string Name { get; set; }
@@ -19,12 +19,9 @@ namespace CemeteryManagementSystem.Services.PublicUserService.Dto
         [Required]
         public string Username { get; set; }
         [Required]
-        [Phone]
-        [StringLength(10, ErrorMessage = "Please make sure contact number is 10 digits")]
-        public string ContactNumber { get; set; }
+        public string EmployeeNumber { get; set; }
         [Required]
-        [StringLength(13, ErrorMessage = "Please make sure Identity Number is 13 digits")]
-        public string NationalIdNumber { get; set; }
+        public string Section { get; set; }
         [Required]
         public string Password { get; set; }
     }
