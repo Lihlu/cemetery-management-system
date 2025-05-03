@@ -50,5 +50,29 @@ namespace CemeteryManagementSystem.Domain.DeceasedPerson
 
             return result;
         }
+
+        public async Task<PagedResultDto<DeceasedPerson>> SearchDeceasedPersonsAsync(SearchDeceasedPersonInput input)
+        {
+            var query = _deceasedPersonRepository
+                .GetAll()
+                .WhereIf(!input.FirstName.IsNullOrWhiteSpace(), d => d.FirstName.Contains(input.FirstName))
+                .WhereIf(!input.LastName.IsNullOrWhiteSpace(), d => d.LastName.Contains(input.LastName))
+                .WhereIf(!input.IdNumber.IsNullOrWhiteSpace(), d => d.IdNumber.Contains(input.IdNumber))
+                .WhereIf(!input.GraveNumber.IsNullOrWhiteSpace(), d => d.GraveNumber.Contains(input.GraveNumber))
+                .WhereIf(!input.Section.IsNullOrWhiteSpace(), d => d.Section.Contains(input.Section))
+                .WhereIf(input.IsBuried.HasValue, d => d.isBuried == input.IsBuried.Value)
+                .WhereIf(input.DateOfDeathStart.HasValue, d => d.DateOfDeath >= input.DateOfDeathStart.Value)
+                .WhereIf(input.DateOfDeathEnd.HasValue, d => d.DateOfDeath <= input.DateOfDeathEnd.Value);
+
+            var totalCount = await query.CountAsync();
+
+            var deceasedPersons = await query
+                .OrderBy(input.Sorting.IsNullOrWhiteSpace() ? "FirstName ASC" : input.Sorting)
+                .PageBy(input)
+                .ToListAsync();
+
+            return new PagedResultDto<DeceasedPerson>(totalCount, deceasedPersons);
+        }
+
     }
 }
