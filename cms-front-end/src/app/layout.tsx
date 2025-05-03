@@ -3,6 +3,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import ToastProvider from "@/providers/toast/toast";
 import { AuthProvider } from "@/providers/auth";
+import { DeceasedPersonProvider } from "@/providers/deceased-person";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -28,9 +29,11 @@ export default function RootLayout({
     <html lang="en">
       <ToastProvider />
       <AuthProvider>
-        <body className={`${geistSans.variable} ${geistMono.variable}`}>
-          {children}
-        </body>
+        <DeceasedPersonProvider>
+          <body className={`${geistSans.variable} ${geistMono.variable}`}>
+            {children}
+          </body>
+        </DeceasedPersonProvider>
       </AuthProvider>
     </html>
   );

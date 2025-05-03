@@ -1,0 +1,33 @@
+import { handleActions } from "redux-actions";
+import { INITIAL_STATE, IDeceasedPersonStateContext } from "./context";
+import { DeceasedPersonActionEnums } from "./actions";
+
+export const DeceasedPersonReducer = handleActions<IDeceasedPersonStateContext>(
+  {
+    // Handling search actions
+    [DeceasedPersonActionEnums.searchDeceasedPersonPending]: (
+      state,
+      action,
+    ) => ({
+      ...state,
+      ...action.payload,
+    }),
+    [DeceasedPersonActionEnums.searchDeceasedPersonSuccess]: (
+      state,
+      action,
+    ) => ({
+      ...state,
+      ...action.payload,
+    }),
+    [DeceasedPersonActionEnums.searchDeceasedPersonError]: (state, action) => ({
+      ...state,
+      ...action.payload,
+    }),
+
+    [DeceasedPersonActionEnums.resetStateFlagsAction]: (state, action) => ({
+      ...state,
+      ...action.payload,
+    }),
+  },
+  INITIAL_STATE,
+);
