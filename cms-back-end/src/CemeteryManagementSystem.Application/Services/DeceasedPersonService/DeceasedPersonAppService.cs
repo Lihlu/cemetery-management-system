@@ -1,6 +1,9 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Abp.Application.Services;
+using Abp.Application.Services.Dto;
 using Abp.Authorization;
 using Abp.Domain.Repositories;
 using CemeteryManagementSystem.Domain.DeceasedPerson;
@@ -32,13 +35,19 @@ namespace CemeteryManagementSystem.Services.DeceasedPersonService
             );
             return ObjectMapper.Map<DeceasedPersonDto>(deceasedPerson);
         }
-        public async Task<PagedResultDto<DeceasedPersonDto>> SearchAsync(SearchDeceasedPersonInput input)
+        public async Task<PagedResultDto<DeceasedPersonDto>> SearchAsync(SearchDeceasedPersonInputDto input)
         {
-            var result = await _deceasedPersonManager.SearchDeceasedPersonsAsync(input);
+            var result = await _deceasedPersonManager.SearchDeceasedPersonsAsync(input.FirstName, input.LastName, input.IdNumber, input.GraveNumber, input.Section, input.IsBuried, input.DateOfDeathStart, input.DateOfDeathEnd);
+
+            var totalCount = result.Count();
+            var pagedResults = result
+                .Skip(0)
+                .Take(10)
+                .ToList();
 
             return new PagedResultDto<DeceasedPersonDto>(
-                result.TotalCount,
-                ObjectMapper.Map<List<DeceasedPersonDto>>(result.Items)
+                totalCount,
+                ObjectMapper.Map<List<DeceasedPersonDto>>(pagedResults)
             );
         }
     }

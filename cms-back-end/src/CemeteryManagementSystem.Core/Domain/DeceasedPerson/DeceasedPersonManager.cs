@@ -1,7 +1,12 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Abp.Application.Services.Dto;
+using Abp.Collections.Extensions;
 using Abp.Domain.Repositories;
 using Abp.Domain.Services;
+using Abp.Extensions;
 using Abp.UI;
 
 namespace CemeteryManagementSystem.Domain.DeceasedPerson
@@ -50,28 +55,46 @@ namespace CemeteryManagementSystem.Domain.DeceasedPerson
 
             return result;
         }
-
-        public async Task<PagedResultDto<DeceasedPerson>> SearchDeceasedPersonsAsync(SearchDeceasedPersonInput input)
+        public async Task<IEnumerable<DeceasedPerson>> SearchDeceasedPersonsAsync(
+     string firstName = "",
+     string lastName = "",
+     string idNumber = "",
+     string graveNumber = "",
+     string section = "",
+     bool? isBuried = null,
+     DateTime? dateOfDeathStart = null,
+     DateTime? dateOfDeathEnd = null
+     )
         {
-            var query = _deceasedPersonRepository
-                .GetAll()
-                .WhereIf(!input.FirstName.IsNullOrWhiteSpace(), d => d.FirstName.Contains(input.FirstName))
-                .WhereIf(!input.LastName.IsNullOrWhiteSpace(), d => d.LastName.Contains(input.LastName))
-                .WhereIf(!input.IdNumber.IsNullOrWhiteSpace(), d => d.IdNumber.Contains(input.IdNumber))
-                .WhereIf(!input.GraveNumber.IsNullOrWhiteSpace(), d => d.GraveNumber.Contains(input.GraveNumber))
-                .WhereIf(!input.Section.IsNullOrWhiteSpace(), d => d.Section.Contains(input.Section))
-                .WhereIf(input.IsBuried.HasValue, d => d.isBuried == input.IsBuried.Value)
-                .WhereIf(input.DateOfDeathStart.HasValue, d => d.DateOfDeath >= input.DateOfDeathStart.Value)
-                .WhereIf(input.DateOfDeathEnd.HasValue, d => d.DateOfDeath <= input.DateOfDeathEnd.Value);
+            var persons = await _deceasedPersonRepository.GetAllAsync();
 
-            var totalCount = await query.CountAsync();
+            var filteredPersons = persons.AsEnumerable();
 
-            var deceasedPersons = await query
-                .OrderBy(input.Sorting.IsNullOrWhiteSpace() ? "FirstName ASC" : input.Sorting)
-                .PageBy(input)
-                .ToListAsync();
+            if (!firstName.IsNullOrWhiteSpace())
+                filteredPersons = filteredPersons.Where(d => d.FirstName.Contains(firstName));
 
-            return new PagedResultDto<DeceasedPerson>(totalCount, deceasedPersons);
+            if (!lastName.IsNullOrWhiteSpace())
+                filteredPersons = filteredPersons.Where(d => d.LastName.Contains(lastName));
+
+            if (!idNumber.IsNullOrWhiteSpace())
+                filteredPersons = filteredPersons.Where(d => d.IdNumber.Contains(idNumber));
+
+            if (!graveNumber.IsNullOrWhiteSpace())
+                filteredPersons = filteredPersons.Where(d => d.GraveNumber.Contains(graveNumber));
+
+            if (!section.IsNullOrWhiteSpace())
+                filteredPersons = filteredPersons.Where(d => d.Section.Contains(section));
+
+            if (isBuried.HasValue)
+                filteredPersons = filteredPersons.Where(d => d.isBuried == isBuried.Value);
+
+            if (dateOfDeathStart.HasValue)
+                filteredPersons = filteredPersons.Where(d => d.DateOfDeath >= dateOfDeathStart.Value);
+
+            if (dateOfDeathEnd.HasValue)
+                filteredPersons = filteredPersons.Where(d => d.DateOfDeath <= dateOfDeathEnd.Value);
+
+            return filteredPersons;
         }
 
     }
