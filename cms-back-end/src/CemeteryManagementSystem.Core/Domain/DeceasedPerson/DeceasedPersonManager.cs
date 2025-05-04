@@ -1,7 +1,12 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
+using Abp.Application.Services.Dto;
+using Abp.Collections.Extensions;
 using Abp.Domain.Repositories;
 using Abp.Domain.Services;
+using Abp.Extensions;
 using Abp.UI;
 
 namespace CemeteryManagementSystem.Domain.DeceasedPerson
@@ -50,5 +55,47 @@ namespace CemeteryManagementSystem.Domain.DeceasedPerson
 
             return result;
         }
+        public async Task<IEnumerable<DeceasedPerson>> SearchDeceasedPersonsAsync(
+     string firstName = "",
+     string lastName = "",
+     string idNumber = "",
+     string graveNumber = "",
+     string section = "",
+     bool? isBuried = null,
+     DateTime? dateOfDeathStart = null,
+     DateTime? dateOfDeathEnd = null
+     )
+        {
+            var persons = await _deceasedPersonRepository.GetAllAsync();
+
+            var filteredPersons = persons.AsEnumerable();
+
+            if (!firstName.IsNullOrWhiteSpace())
+                filteredPersons = filteredPersons.Where(d => d.FirstName.Contains(firstName));
+
+            if (!lastName.IsNullOrWhiteSpace())
+                filteredPersons = filteredPersons.Where(d => d.LastName.Contains(lastName));
+
+            if (!idNumber.IsNullOrWhiteSpace())
+                filteredPersons = filteredPersons.Where(d => d.IdNumber.Contains(idNumber));
+
+            if (!graveNumber.IsNullOrWhiteSpace())
+                filteredPersons = filteredPersons.Where(d => d.GraveNumber.Contains(graveNumber));
+
+            if (!section.IsNullOrWhiteSpace())
+                filteredPersons = filteredPersons.Where(d => d.Section.Contains(section));
+
+            if (isBuried.HasValue)
+                filteredPersons = filteredPersons.Where(d => d.isBuried == isBuried.Value);
+
+            if (dateOfDeathStart.HasValue)
+                filteredPersons = filteredPersons.Where(d => d.DateOfDeath >= dateOfDeathStart.Value);
+
+            if (dateOfDeathEnd.HasValue)
+                filteredPersons = filteredPersons.Where(d => d.DateOfDeath <= dateOfDeathEnd.Value);
+
+            return filteredPersons;
+        }
+
     }
 }
