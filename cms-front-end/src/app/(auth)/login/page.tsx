@@ -33,7 +33,7 @@ const LoginPage: React.FC = () => {
       shouldNavigate = true;
       switch (currentRole) {
         case "publicuser":
-          destination = "/publicUser";
+          destination = "/public-user";
           break;
         case "employee":
           destination = "/employee";
