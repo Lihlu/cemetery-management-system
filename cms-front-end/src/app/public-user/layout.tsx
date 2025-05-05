@@ -6,6 +6,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { useAuthActions, useAuthState } from "@/providers/auth";
 import BottomNav from "@/components/shared/bottom-nav/bottom-nav";
+import withAuth from "@/hoc/withAuth";
 
 const { Sider, Header, Content } = Layout;
 const { useBreakpoint } = Grid;
@@ -88,4 +89,4 @@ const PublicUserLayout = ({ children }: { children: React.ReactNode }) => {
   );
 };
 
-export default PublicUserLayout;
+export default withAuth(PublicUserLayout);
