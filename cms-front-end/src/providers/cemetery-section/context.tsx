@@ -2,6 +2,7 @@
 import { createContext } from "react";
 
 export interface ICemeterySection {
+  id: string;
   name: string;
   type: string;
   numberOfRows: number;

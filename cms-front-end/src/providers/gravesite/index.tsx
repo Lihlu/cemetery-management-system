@@ -11,6 +11,9 @@ import {
   getAllGravesitesError,
   getAllGravesitesPending,
   getAllGravesitesSuccess,
+  getBySectionIdPending,
+  getBySectionIdSuccess,
+  getBySectionIdError,
 } from "./actions";
 import { getAxiosInstance } from "@/utils/axios-instance";
 
@@ -36,6 +39,22 @@ export const GravesiteProvider = ({
         dispatch(getAllGravesitesError());
       });
   };
+
+  const getBySectionId = async (sectionId: string) => {
+    dispatch(getBySectionIdPending());
+
+    const endpoint: string = `/api/services/app/GraveSite/GetByCemeterySectionId?cemeterySectionId=${sectionId}`;
+
+    await instance
+      .get(endpoint)
+      .then((response) => {
+        dispatch(getBySectionIdSuccess(response.data.result));
+      })
+      .catch((error) => {
+        console.error(error);
+        dispatch(getBySectionIdError());
+      });
+  };
   const resetStateFlags = () => {
     dispatch(resetStateFlagsAction());
   };
@@ -44,6 +63,7 @@ export const GravesiteProvider = ({
       <GravesiteActionContext.Provider
         value={{
           getAllGravesites,
+          getBySectionId,
           resetStateFlags,
         }}
       >

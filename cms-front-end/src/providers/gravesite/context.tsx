@@ -20,6 +20,7 @@ export interface IGravesiteStateContext {
 
 export interface IGravesiteActionContext {
   getAllGravesites: () => Promise<void>;
+  getBySectionId: (sectionId: string) => void;
   resetStateFlags: () => void;
 }
 

@@ -18,6 +18,19 @@ export const GravesiteReducer = handleActions<IGravesiteStateContext>(
       ...action.payload,
     }),
 
+    [GravesiteActionEnums.getBySectionIdPending]: (state, action) => ({
+      ...state,
+      ...action.payload,
+    }),
+    [GravesiteActionEnums.getBySectionIdSuccess]: (state, action) => ({
+      ...state,
+      ...action.payload,
+    }),
+    [GravesiteActionEnums.getBySectionIdError]: (state, action) => ({
+      ...state,
+      ...action.payload,
+    }),
+
     [GravesiteActionEnums.resetStateFlagsAction]: (state, action) => ({
       ...state,
       ...action.payload,
