@@ -4,6 +4,7 @@ import "./globals.css";
 import ToastProvider from "@/providers/toast/toast";
 import { AuthProvider } from "@/providers/auth";
 import { DeceasedPersonProvider } from "@/providers/deceased-person";
+import { CemeterySectionProvider } from "@/providers/cemetery-section";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,11 +30,13 @@ export default function RootLayout({
     <html lang="en">
       <ToastProvider />
       <AuthProvider>
-        <DeceasedPersonProvider>
-          <body className={`${geistSans.variable} ${geistMono.variable}`}>
-            {children}
-          </body>
-        </DeceasedPersonProvider>
+        <CemeterySectionProvider>
+          <DeceasedPersonProvider>
+            <body className={`${geistSans.variable} ${geistMono.variable}`}>
+              {children}
+            </body>
+          </DeceasedPersonProvider>
+        </CemeterySectionProvider>
       </AuthProvider>
     </html>
   );
