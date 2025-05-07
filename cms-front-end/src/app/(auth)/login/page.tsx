@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect } from "react";
-import { UserOutlined, LockOutlined, LoginOutlined } from "@ant-design/icons";
+import { UserOutlined, LockOutlined } from "@ant-design/icons";
 import { Button, Form, Input, Spin, Typography, Divider, Card } from "antd";
 import { useStyles } from "./style/style";
 import { ILoginData } from "@/providers/auth/context";
@@ -66,11 +66,12 @@ const LoginPage: React.FC = () => {
         <Card bordered={false} className={styles.loginCard}>
           <div className={styles.logoContainer}>
             <div className={styles.logo}>
-              <img src="/images/hero-image.png" alt="Logo" width="120px" />
-               
+              <img src="/images/auth-logo.png" alt="Logo" width="120px" />
             </div>
           </div>
-          <Title level={2} className={styles.formTitle}>Welcome Back</Title>
+          <Title level={2} className={styles.formTitle}>
+            Welcome Back
+          </Title>
           <Text type="secondary" className={styles.formSubtitle}>
             Sign in to continue to your account
           </Text>
@@ -104,11 +105,11 @@ const LoginPage: React.FC = () => {
               name="password"
               label="Password"
               rules={[
-                { required: true, message: "Please enter your password" }
+                { required: true, message: "Please enter your password" },
               ]}
             >
               <Input.Password
-                placeholder="Enter your password" 
+                placeholder="Enter your password"
                 prefix={<LockOutlined className={styles.inputIcon} />}
                 className={styles.input}
               />
@@ -121,10 +122,10 @@ const LoginPage: React.FC = () => {
             </div>
 
             <Form.Item className={styles.submitContainer}>
-              <Button 
-                block 
-                type="primary" 
-                htmlType="submit" 
+              <Button
+                block
+                type="primary"
+                htmlType="submit"
                 disabled={isPending}
                 className={styles.submitButton}
               >

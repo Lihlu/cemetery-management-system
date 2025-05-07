@@ -2,24 +2,28 @@ import { createStyles } from "antd-style";
 
 // Define our color palette
 const colors = {
-  background: '#F8F9FA',  // Soft White
-  mainText: '#1D2D44',    // Deep Navy Blue
-  secondaryText: '#B0B8C1', // Ash Gray
-  primary: '#C8A96B',     // Muted Gold
-  secondary: '#D9D6EA',   // Gentle Lavender
+  background: "#F8F9FA", // Soft White
+  mainText: "#1D2D44", // Deep Navy Blue
+  secondaryText: "#B0B8C1", // Ash Gray
+  primary: "#C8A96B", // Muted Gold
+  secondary: "#D9D6EA", // Gentle Lavender
 };
 
 export const useStyles = createStyles(({ css, token }) => {
   // Override Ant Design's default token colors
   token.colorPrimary = colors.primary;
-  
+
   return {
     pageContainer: css`
       display: flex;
       justify-content: center;
       align-items: center;
       min-height: 100vh;
-      background: linear-gradient(135deg, ${colors.background} 0%, ${colors.secondary} 100%);
+      background: linear-gradient(
+        135deg,
+        ${colors.background} 0%,
+        ${colors.secondary} 100%
+      );
       padding: 16px;
     `,
     contentWrapper: css`
@@ -57,6 +61,7 @@ export const useStyles = createStyles(({ css, token }) => {
       display: flex;
       justify-content: center;
       align-items: center;
+      margin-bottom: 24px;
     `,
     formTitle: css`
       color: ${colors.mainText};
@@ -78,7 +83,6 @@ export const useStyles = createStyles(({ css, token }) => {
     input: css`
       border-radius: 6px;
       border-color: ${colors.secondary};
-      
     `,
     inputIcon: css`
       color: ${colors.secondaryText};
@@ -90,7 +94,7 @@ export const useStyles = createStyles(({ css, token }) => {
     forgotPassword: css`
       color: ${colors.primary};
       transition: color 0.3s;
-      
+
       &:hover {
         color: ${colors.mainText};
       }
@@ -104,7 +108,7 @@ export const useStyles = createStyles(({ css, token }) => {
       font-size: 16px;
       background-color: ${colors.primary};
       border-color: ${colors.primary};
-      
+
       &:hover {
         background-color: ${colors.primary}ee;
         border-color: ${colors.primary}ee;
@@ -112,7 +116,7 @@ export const useStyles = createStyles(({ css, token }) => {
     `,
     divider: css`
       margin: 10px 0;
-      
+
       .ant-divider-inner-text {
         font-size: 14px;
       }
@@ -126,7 +130,7 @@ export const useStyles = createStyles(({ css, token }) => {
       background-color: white;
       border-color: ${colors.primary};
       color: ${colors.primary};
-      
+
       &:hover {
         background-color: ${colors.background};
         border-color: ${colors.mainText};
