@@ -51,6 +51,7 @@ const LoginPage: React.FC = () => {
     }
 
     if (isError) {
+      toast("Login Failed. Password/Username incorrect", "error");
       resetStateFlags();
     }
   }, [isSuccess, isError, currentRole, resetStateFlags, router]);
