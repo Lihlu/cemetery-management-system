@@ -1,5 +1,6 @@
 "use client";
 import React, { useState } from "react";
+import Image from "next/image";
 import {
   Button,
   Layout,
@@ -32,7 +33,7 @@ const LandingPage = () => {
   const router = useRouter();
   const [menuVisible, setMenuVisible] = useState(false);
 
-  const handleNavigation = (path) => {
+  const handleNavigation = (path: string) => {
     router.push(path);
   };
 
@@ -45,7 +46,7 @@ const LandingPage = () => {
       {/* Header Navigation */}
       <Header className={styles.header}>
         <div className={styles.logo}>
-          <RocketOutlined /> Cemetery Management System
+          <RocketOutlined /> Memoria
         </div>
         <div className={styles.mobileMenuButton} onClick={toggleMenu}>
           <div className={styles.menuBar}></div>
@@ -78,12 +79,12 @@ const LandingPage = () => {
             <Col xs={24} md={12}>
               <div className={styles.heroContent}>
                 <Title level={1}>
-                  Manage Burial Bookings and Cemetery Operations with Ease
+                  Honour Memories with Seamless Cemetery Management
                 </Title>
                 <Paragraph className={styles.heroParagraph}>
-                  A modern solution for the public, staff, and funeral parlouts
-                  to book burials, manage plots, and digitize recores - all in
-                  one place.
+                  Memoria simplifies burial bookings, plot management, and
+                  record digitization — offering a respectful and modern
+                  solution for families, staff, and funeral parlours.
                 </Paragraph>
                 <div className={styles.heroButtons}>
                   <Button
@@ -98,9 +99,12 @@ const LandingPage = () => {
             </Col>
             <Col xs={24} md={12}>
               <div className={styles.heroImage}>
-                <div className={styles.imagePlaceholder}>
-                  <RocketOutlined className={styles.placeholderIcon} />
-                </div>
+                <Image
+                  src="/images/hero-image.png"
+                  alt="Memoria Hero Image"
+                  width={500}
+                  height={450}
+                />
               </div>
             </Col>
           </Row>
@@ -108,19 +112,19 @@ const LandingPage = () => {
 
         <section className={styles.featuresSection} id="features">
           <Title level={2} className={styles.sectionTitle}>
-            Key Features
+            Our Capabilities
           </Title>
           <Paragraph className={styles.sectionSubtitle}>
-            Discover the powerful capabilities that make our platform stand out
+            Trusted tools designed to support cemeteries with care and precision
           </Paragraph>
 
           <Row gutter={[32, 32]} className={styles.featuresGrid}>
             <Col xs={24} sm={12} lg={8}>
               <Card className={styles.featureCard}>
                 <CalendarOutlined className={styles.featureIcon} />
-                <Title level={4}>Burial Booking System</Title>
+                <Title level={4}>Burial Booking</Title>
                 <Paragraph>
-                  Schedule, edit, or cancel burial services with real-time
+                  Schedule, modify, or cancel services with real-time
                   availability.
                 </Paragraph>
               </Card>
@@ -130,57 +134,52 @@ const LandingPage = () => {
                 <AppstoreOutlined className={styles.featureIcon} />
                 <Title level={4}>Plot Management</Title>
                 <Paragraph>
-                  Organize and manage grave plots with intuitive mapping and
-                  tracking.
+                  Assign and manage grave plots with intuitive mapping.
                 </Paragraph>
               </Card>
             </Col>
             <Col xs={24} sm={12} lg={8}>
               <Card className={styles.featureCard}>
                 <EnvironmentOutlined className={styles.featureIcon} />
-                <Title level={4}>Cemetery Map</Title>
+                <Title level={4}>Interactive Map</Title>
                 <Paragraph>
-                  View an interactive map to choos and locate burial plots
-                  easily.
+                  Locate burial plots effortlessly through detailed mapping.
                 </Paragraph>
               </Card>
             </Col>
             <Col xs={24} sm={12} lg={8}>
               <Card className={styles.featureCard}>
                 <TeamOutlined className={styles.featureIcon} />
-                <Title level={4}>Funeral Parlour Access</Title>
+                <Title level={4}>Funeral Parlour Portal</Title>
                 <Paragraph>
-                  Allow funeral parlours to manage client bookings
-                  independently.
+                  Empower funeral parlours to manage client bookings securely.
                 </Paragraph>
               </Card>
             </Col>
             <Col xs={24} sm={12} lg={8}>
               <Card className={styles.featureCard}>
                 <CreditCardOutlined className={styles.featureIcon} />
-                <Title level={4}>Online Payments</Title>
+                <Title level={4}>Secure Payments</Title>
                 <Paragraph>
-                  Complete booking payments securely through the platform.
+                  Accept payments online quickly and safely.
                 </Paragraph>
               </Card>
             </Col>
             <Col xs={24} sm={12} lg={8}>
               <Card className={styles.featureCard}>
                 <FileTextOutlined className={styles.featureIcon} />
-                <Title level={4}>Digitized Records</Title>
+                <Title level={4}>Digital Records</Title>
                 <Paragraph>
-                  Upload, verify, and maintain digital records of all burial
-                  services.
+                  Digitize and preserve vital documents with human verification.
                 </Paragraph>
               </Card>
             </Col>
             <Col xs={24} sm={12} lg={8}>
               <Card className={styles.featureCard}>
                 <MailOutlined className={styles.featureIcon} />
-                <Title level={4}>Automated Notifications</Title>
+                <Title level={4}>Notifications</Title>
                 <Paragraph>
-                  Receive confirmations and reminders to ensure smooth
-                  operations.
+                  Keep users updated with confirmations and gentle reminders.
                 </Paragraph>
               </Card>
             </Col>
@@ -189,8 +188,7 @@ const LandingPage = () => {
                 <ScheduleOutlined className={styles.featureIcon} />
                 <Title level={4}>Balanced Scheduling</Title>
                 <Paragraph>
-                  Prevent overbooking and mange services with optimized
-                  scheduling tools
+                  Optimize service planning to avoid conflicts or overlaps.
                 </Paragraph>
               </Card>
             </Col>
@@ -202,9 +200,9 @@ const LandingPage = () => {
         <Row gutter={[32, 32]}>
           <Col xs={24} md={8}>
             <div className={styles.footerSection}>
-              <Title level={4}>Cemetery Management System</Title>
+              <Title level={4}>Memoria</Title>
               <Paragraph>
-                Transforming cemetery management with innovative solutions.
+                Honouring memories through trusted digital solutions.
               </Paragraph>
             </div>
           </Col>
@@ -232,7 +230,7 @@ const LandingPage = () => {
               <Title level={4}>Contact Us</Title>
               <Paragraph>South Street</Paragraph>
               <Paragraph>Die Hoewes, Centurion</Paragraph>
-              <Paragraph>admin@cms.co.za</Paragraph>
+              <Paragraph>admin@memoria.co.za</Paragraph>
               <Paragraph>078 123 1234</Paragraph>
             </div>
           </Col>
@@ -240,7 +238,7 @@ const LandingPage = () => {
         <Divider />
         <div className={styles.copyright}>
           <Paragraph>
-            © {new Date().getFullYear()} YourApp. All rights reserved.
+            © {new Date().getFullYear()} Memoria. All rights reserved.
           </Paragraph>
         </div>
       </Footer>
