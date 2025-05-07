@@ -31,7 +31,7 @@ export enum BookingActionEnums {
 
 export const getAllBookingsPending = createAction<IBookingStateContext>(
   BookingActionEnums.getAllBookingsPending,
-  () => ({ isPending: true, isSuccess: false, isError: false })
+  () => ({ isPending: true, isSuccess: false, isError: false }),
 );
 
 export const getAllBookingsSuccess = createAction<
@@ -50,12 +50,12 @@ export const getAllBookingsError = createAction<IBookingStateContext, string>(
     isPending: false,
     isSuccess: false,
     isError: true,
-  })
+  }),
 );
 
 export const getBookingByIdPending = createAction<IBookingStateContext>(
   BookingActionEnums.getBookingByIdPending,
-  () => ({ isPending: true, isSuccess: false, isError: false })
+  () => ({ isPending: true, isSuccess: false, isError: false }),
 );
 export const getBookingByIdSuccess = createAction<
   IBookingStateContext,
@@ -72,20 +72,20 @@ export const getBookingByIdError = createAction<IBookingStateContext, string>(
     isPending: false,
     isSuccess: false,
     isError: true,
-  })
+  }),
 );
 export const getBookingsByUserIdPending = createAction<IBookingStateContext>(
   BookingActionEnums.getBookingsByUserIdPending,
-  () => ({ isPending: true, isSuccess: false, isError: false })
+  () => ({ isPending: true, isSuccess: false, isError: false }),
 );
 export const getBookingsByUserIdSuccess = createAction<
   IBookingStateContext,
   IBooking[]
->(BookingActionEnums.getBookingsByUserIdSuccess, (bookings) => ({
+>(BookingActionEnums.getBookingsByUserIdSuccess, (bookingList) => ({
   isPending: false,
   isSuccess: true,
   isError: false,
-  bookings,
+  bookingList,
 }));
 export const getBookingsByUserIdError = createAction<
   IBookingStateContext,
@@ -97,7 +97,7 @@ export const getBookingsByUserIdError = createAction<
 }));
 export const createBookingPending = createAction<IBookingStateContext>(
   BookingActionEnums.createBookingPending,
-  () => ({ isPending: true, isSuccess: false, isError: false })
+  () => ({ isPending: true, isSuccess: false, isError: false }),
 );
 export const createBookingSuccess = createAction<IBookingStateContext>(
   BookingActionEnums.createBookingSuccess,
@@ -105,7 +105,7 @@ export const createBookingSuccess = createAction<IBookingStateContext>(
     isPending: false,
     isSuccess: true,
     isError: false,
-  })
+  }),
 );
 export const createBookingError = createAction<IBookingStateContext, string>(
   BookingActionEnums.createBookingError,
@@ -113,11 +113,11 @@ export const createBookingError = createAction<IBookingStateContext, string>(
     isPending: false,
     isSuccess: false,
     isError: true,
-  })
+  }),
 );
 export const updateBookingPending = createAction<IBookingStateContext>(
   BookingActionEnums.updateBookingPending,
-  () => ({ isPending: true, isSuccess: false, isError: false })
+  () => ({ isPending: true, isSuccess: false, isError: false }),
 );
 export const updateBookingSuccess = createAction<IBookingStateContext>(
   BookingActionEnums.updateBookingSuccess,
@@ -125,7 +125,7 @@ export const updateBookingSuccess = createAction<IBookingStateContext>(
     isPending: false,
     isSuccess: true,
     isError: false,
-  })
+  }),
 );
 export const updateBookingError = createAction<IBookingStateContext, string>(
   BookingActionEnums.updateBookingError,
@@ -133,12 +133,12 @@ export const updateBookingError = createAction<IBookingStateContext, string>(
     isPending: false,
     isSuccess: false,
     isError: true,
-  })
+  }),
 );
 
 export const deleteBookingPending = createAction<IBookingStateContext>(
   BookingActionEnums.deleteBookingPending,
-  () => ({ isPending: true, isSuccess: false, isError: false })
+  () => ({ isPending: true, isSuccess: false, isError: false }),
 );
 export const deleteBookingSuccess = createAction<IBookingStateContext>(
   BookingActionEnums.deleteBookingSuccess,
@@ -146,7 +146,7 @@ export const deleteBookingSuccess = createAction<IBookingStateContext>(
     isPending: false,
     isSuccess: true,
     isError: false,
-  })
+  }),
 );
 export const deleteBookingError = createAction<IBookingStateContext, string>(
   BookingActionEnums.deleteBookingError,
@@ -154,10 +154,10 @@ export const deleteBookingError = createAction<IBookingStateContext, string>(
     isPending: false,
     isSuccess: false,
     isError: true,
-  })
+  }),
 );
 
 export const resetStateFlagsAction = createAction<IBookingStateContext>(
   BookingActionEnums.resetStateFlagsAction,
-  () => ({ isPending: false, isSuccess: false, isError: false })
+  () => ({ isPending: false, isSuccess: false, isError: false }),
 );
