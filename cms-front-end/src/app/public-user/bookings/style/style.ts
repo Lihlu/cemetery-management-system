@@ -1,6 +1,5 @@
 import { createStyles } from "antd-style";
 
-// Define our color palette
 const colors = {
   background: "#F8F9FA", // Soft White
   mainText: "#1D2D44", // Deep Navy Blue

@@ -5,6 +5,7 @@ import {
   BookingActionContext,
   BookingStateContext,
   INITIAL_STATE,
+  IBooking,
 } from "./context";
 import {
   resetStateFlagsAction,
@@ -28,7 +29,6 @@ import {
   deleteBookingSuccess,
 } from "./actions";
 import { getAxiosInstance } from "@/utils/axios-instance";
-import { IBooking } from "./context";
 
 export const BookingProvider = ({
   children,
@@ -56,7 +56,7 @@ export const BookingProvider = ({
   const getBookingById = async (id: string) => {
     dispatch(getBookingByIdPending());
 
-    const endpoint: string = `/api/services/app/Booking/Get?Id=${id}`;
+    const endpoint: string = `/api/services/app/Booking/GetByUserId?userId=${id}`;
 
     await instance
       .get(endpoint)
@@ -71,12 +71,12 @@ export const BookingProvider = ({
   const getBookingsByUserId = async (userId: string) => {
     dispatch(getBookingsByUserIdPending());
 
-    const endpoint: string = `/api/services/app/Booking/GetByUserId?UserId=${userId}`;
+    const endpoint: string = `/api/services/app/Booking/GetByUserId?userId=${userId}`;
 
     await instance
       .get(endpoint)
       .then((response) => {
-        dispatch(getBookingsByUserIdSuccess(response.data.result.items));
+        dispatch(getBookingsByUserIdSuccess(response.data.result));
       })
       .catch((error) => {
         console.error(error);
@@ -102,13 +102,15 @@ export const BookingProvider = ({
     dispatch(updateBookingPending());
 
     const endpoint: string = `/api/services/app/Booking/Update`;
-
+    debugger;
     await instance
       .put(endpoint, booking)
       .then((response) => {
+        debugger;
         dispatch(updateBookingSuccess(response.data.result));
       })
       .catch((error) => {
+        debugger;
         console.error(error);
         dispatch(updateBookingError());
       });
