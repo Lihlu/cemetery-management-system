@@ -18,10 +18,10 @@ namespace CemeteryManagementSystem.Domain.Bookings
 
         public async Task<IEnumerable<Booking>> GetBookingsByUserId(long userId)
         {
-           var bookings = await _bookingRepository.GetAll()
-                .Include(b => b.DeceasedPerson)
-                .Where(b => b.BookerId == userId)
-                .ToListAsync();
+            var bookings = await _bookingRepository.GetAll()
+                 .Include(b => b.DeceasedPerson)
+                 .Where(b => b.BookerId == userId)
+                 .ToListAsync();
 
             return bookings;
         }
