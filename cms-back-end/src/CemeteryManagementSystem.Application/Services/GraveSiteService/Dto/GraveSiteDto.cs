@@ -18,5 +18,6 @@ namespace CemeteryManagementSystem.Services.GraveSiteService.Dto
         public bool IsExtraDeep { get; set; }
         public string Occupant1IdNumber { get; set; }
         public string Occupant2IdNumber { get; set; }
+        public long OwnerId { get; set; }
     }
 }

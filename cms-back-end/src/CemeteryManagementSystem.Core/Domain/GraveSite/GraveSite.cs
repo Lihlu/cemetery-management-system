@@ -11,5 +11,6 @@ namespace CemeteryManagementSystem.Domain.GraveSite
         public string GraveType { get; set; }
         public string Occupant1IdNumber { get; set; }
         public string Occupant2IdNumber { get; set; }
+        public long OwnerId { get; set; }
     }
 }
