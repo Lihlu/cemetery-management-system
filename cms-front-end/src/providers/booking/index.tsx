@@ -102,15 +102,12 @@ export const BookingProvider = ({
     dispatch(updateBookingPending());
 
     const endpoint: string = `/api/services/app/Booking/Update`;
-    debugger;
     await instance
       .put(endpoint, booking)
       .then((response) => {
-        debugger;
         dispatch(updateBookingSuccess(response.data.result));
       })
       .catch((error) => {
-        debugger;
         console.error(error);
         dispatch(updateBookingError());
       });

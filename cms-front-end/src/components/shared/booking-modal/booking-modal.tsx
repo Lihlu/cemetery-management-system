@@ -27,12 +27,6 @@ const BookingModal = ({
     setCurrentBooking(booking);
   }, [booking]);
 
-  const formatDateForInput = (dateString?: string) => {
-    if (!dateString) return "";
-    const date = new Date(dateString);
-    return isNaN(date.getTime()) ? "" : date.toISOString().slice(0, 16);
-  };
-
   const formatDateForDisplay = (dateString?: string) => {
     if (!dateString) return "N/A";
     const date = new Date(dateString);
@@ -83,7 +77,6 @@ const BookingModal = ({
             {editMode ? (
               <input
                 type="datetime-local"
-                value={formatDateForInput(currentBooking.dateAndTimeOfFuneral)}
                 onChange={(e) =>
                   setCurrentBooking({
                     ...currentBooking,
