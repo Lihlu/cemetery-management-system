@@ -13,6 +13,7 @@ const { useBreakpoint } = Grid;
 
 const publicUserNavItems = [
   { key: "/public-user", label: "Home", icon: <HomeOutlined /> },
+  { key: "/public-user/bookings", label: "Bookings", icon: <HomeOutlined /> },
 ];
 
 const PublicUserLayout = ({ children }: { children: React.ReactNode }) => {
