@@ -1,36 +1,40 @@
 name: CMS Front-End CI
 
 on:
+  push:
+    branches:
+      - main
+      - development
   pull_request:
-    branches: [ main, development ]
+    branches: [main, development]
     paths:
-      - 'cms-front-end/**'
+      - "cms-front-end/**"
 
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Setup Node.js
-      uses: actions/setup-node@v4
-      with:
-        node-version: '22.14.0'
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22.14.0"
 
-    - name: Install dependencies
-      working-directory: ./cms-front-end
-      run: npm install
+      - name: Install dependencies
+        working-directory: ./cms-front-end
+        run: npm install
 
-    - name: Check Prettier formatting
-      working-directory: ./cms-front-end
-      run: npm run format
+      - name: Check Prettier formatting
+        working-directory: ./cms-front-end
+        run: npm run format
 
-    - name: Run ESLint
-      working-directory: ./cms-front-end
-      run: npm run lint
+      - name: Run ESLint
+        working-directory: ./cms-front-end
+        run: npm run lint
 
-    - name: Build Next.js app
-      working-directory: ./cms-front-end
-      run: npm run build
+      - name: Build Next.js app
+        working-directory: ./cms-front-end
+        run: npm run build

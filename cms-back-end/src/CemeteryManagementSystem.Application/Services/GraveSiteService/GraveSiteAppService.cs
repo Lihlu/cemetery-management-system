@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using Abp.Application.Services;
 using Abp.Authorization;
@@ -11,9 +12,19 @@ namespace CemeteryManagementSystem.Services.GraveSiteService
     [AbpAuthorize]
     public class GraveSiteAppService : AsyncCrudAppService<GraveSite, GraveSiteDto, Guid>, IGraveSiteAppService
     {
-        public GraveSiteAppService(IRepository<GraveSite, Guid> repository)
+        private readonly GravesiteManager _gravesiteManager;
+        public GraveSiteAppService(IRepository<GraveSite, Guid> repository, GravesiteManager gravesiteManager)
             : base(repository)
         {
+            _gravesiteManager = gravesiteManager;
         }
+
+        public async Task<List<GraveSiteDto>> GetByOwnerIdAsync(long ownerId)
+        {
+            var gravesites = await _gravesiteManager.GetGraveSitesByOwnerId(ownerId);
+
+            return ObjectMapper.Map<List<GraveSiteDto>>(gravesites);
+        }
+
     }
 }

@@ -1819,6 +1819,9 @@ namespace CemeteryManagementSystem.Migrations
                     b.Property<string>("Occupant2IdNumber")
                         .HasColumnType("text");
 
+                    b.Property<long>("OwnerId")
+                        .HasColumnType("bigint");
+
                     b.Property<string>("SiteNumber")
                         .HasColumnType("text");
 

@@ -3,6 +3,7 @@ using Abp.Application.Services.Dto;
 using System.ComponentModel.DataAnnotations;
 using Abp.AutoMapper;
 using CemeteryManagementSystem.Domain.Bookings;
+using CemeteryManagementSystem.Domain.DeceasedPerson;
 
 namespace CemeteryManagementSystem.Services.BookingService.Dto
 {
@@ -18,6 +19,7 @@ namespace CemeteryManagementSystem.Services.BookingService.Dto
         [Required]
         public DateTime DateAndTimeOfFuneral { get; set; }
 
+        public DeceasedPerson DeceasedPerson { get; set; }
         public string SpecialRequest { get; set; }
     }
 }
