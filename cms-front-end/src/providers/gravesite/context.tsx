@@ -4,9 +4,10 @@ import { createContext } from "react";
 export interface IGravesite {
   id: string;
   cemeterySectionId: string;
+  siteNumber: string;
   isExtraDeep: boolean;
   graveType: string;
-  occuppant1IdNumber: string;
+  occupant1IdNumber: string;
   occupant2IdNumber: string;
   ownerId: number;
 }
