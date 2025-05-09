@@ -2,12 +2,14 @@
 import { createContext } from "react";
 
 export interface IGravesite {
-  id: number;
+  id: string;
   cemeterySectionId: string;
+  siteNumber: string;
   isExtraDeep: boolean;
   graveType: string;
-  occuppant1IdNumber: string;
+  occupant1IdNumber: string;
   occupant2IdNumber: string;
+  ownerId: number;
 }
 
 export interface IGravesiteStateContext {
@@ -20,6 +22,7 @@ export interface IGravesiteStateContext {
 
 export interface IGravesiteActionContext {
   getAllGravesites: () => Promise<void>;
+  getByOwnerId: (ownerId: number) => void;
   resetStateFlags: () => void;
 }
 

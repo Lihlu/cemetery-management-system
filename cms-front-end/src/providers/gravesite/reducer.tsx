@@ -18,6 +18,18 @@ export const GravesiteReducer = handleActions<IGravesiteStateContext>(
       ...action.payload,
     }),
 
+    [GravesiteActionEnums.getByOwnerIdPending]: (state, action) => ({
+      ...state,
+      ...action.payload,
+    }),
+    [GravesiteActionEnums.getByOwnerIdSuccess]: (state, action) => ({
+      ...state,
+      ...action.payload,
+    }),
+    [GravesiteActionEnums.getByOwnerIdError]: (state, action) => ({
+      ...state,
+      ...action.payload,
+    }),
     [GravesiteActionEnums.resetStateFlagsAction]: (state, action) => ({
       ...state,
       ...action.payload,

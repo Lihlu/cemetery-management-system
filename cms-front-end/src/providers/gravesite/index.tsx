@@ -11,6 +11,9 @@ import {
   getAllGravesitesError,
   getAllGravesitesPending,
   getAllGravesitesSuccess,
+  getByOwnerIdPending,
+  getByOwnerIdSuccess,
+  getByOwnerIdError,
 } from "./actions";
 import { getAxiosInstance } from "@/utils/axios-instance";
 
@@ -21,6 +24,7 @@ export const GravesiteProvider = ({
 }) => {
   const [state, dispatch] = useReducer(GravesiteReducer, INITIAL_STATE);
   const instance = getAxiosInstance();
+
   const getAllGravesites = async () => {
     dispatch(getAllGravesitesPending());
 
@@ -29,13 +33,30 @@ export const GravesiteProvider = ({
     await instance
       .get(endpoint)
       .then((response) => {
-        dispatch(getAllGravesitesSuccess(response.data.result.items));
+        dispatch(getAllGravesitesSuccess(response?.data?.result?.items));
       })
       .catch((error) => {
         console.error(error);
         dispatch(getAllGravesitesError());
       });
   };
+
+  const getByOwnerId = async (ownerId: number) => {
+    dispatch(getByOwnerIdPending());
+
+    const endpoint: string = `/api/services/app/GraveSite/GetByOwnerId?ownerId=${ownerId}`;
+
+    await instance
+      .get(endpoint)
+      .then((response) => {
+        dispatch(getByOwnerIdSuccess(response?.data?.result));
+      })
+      .catch((error) => {
+        console.error(error);
+        dispatch(getByOwnerIdError);
+      });
+  };
+
   const resetStateFlags = () => {
     dispatch(resetStateFlagsAction());
   };
@@ -45,6 +66,7 @@ export const GravesiteProvider = ({
         value={{
           getAllGravesites,
           resetStateFlags,
+          getByOwnerId,
         }}
       >
         {children}
