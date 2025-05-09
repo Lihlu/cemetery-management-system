@@ -11,6 +11,7 @@ using CemeteryManagementSystem.Domain.DeceasedPerson;
 using CemeteryManagementSystem.Domain.CemeterySection;
 using CemeteryManagementSystem.Domain.GraveSite;
 using CemeteryManagementSystem.Domain.Bookings;
+using CemeteryManagementSystem.Domain.PassengerManagement;
 
 namespace CemeteryManagementSystem.EntityFrameworkCore;
 
@@ -24,6 +25,7 @@ public class CemeteryManagementSystemDbContext : AbpZeroDbContext<Tenant, Role, 
     public DbSet<CemeterySection> CemeterySections { get; set; }
     public DbSet<GraveSite> GraveSites { get; set; }
     public DbSet<Booking> Bookings { get; set; }
+    public DbSet<Payment> Payments { get; set; }
     public CemeteryManagementSystemDbContext(DbContextOptions<CemeteryManagementSystemDbContext> options)
         : base(options)
     {
