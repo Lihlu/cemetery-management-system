@@ -1,6 +1,12 @@
 "use client";
 import { Layout, Menu, Button, Grid, Dropdown } from "antd";
-import { HomeOutlined, UserOutlined, LogoutOutlined } from "@ant-design/icons";
+import {
+  HomeOutlined,
+  UserOutlined,
+  LogoutOutlined,
+  CalendarOutlined,
+  AppstoreOutlined,
+} from "@ant-design/icons";
 import { useStyles } from "./style/style";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
@@ -13,7 +19,16 @@ const { useBreakpoint } = Grid;
 
 const publicUserNavItems = [
   { key: "/public-user", label: "Home", icon: <HomeOutlined /> },
-  { key: "/public-user/bookings", label: "Bookings", icon: <HomeOutlined /> },
+  {
+    key: "/public-user/bookings",
+    label: "Bookings",
+    icon: <CalendarOutlined />,
+  },
+  {
+    key: "/public-user/gravesites",
+    label: "Gravesites",
+    icon: <AppstoreOutlined />,
+  },
 ];
 
 const PublicUserLayout = ({ children }: { children: React.ReactNode }) => {
