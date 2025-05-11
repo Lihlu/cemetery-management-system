@@ -1,6 +1,5 @@
 "use client";
-
-import SectionSquare from "@/components/shared/section-square/section-square";
+import CemeteryMap from "@/components/shared/cemetery-map/cemetery-map";
 import {
   useCemeterySectionActions,
   useCemeterySectionState,
@@ -20,11 +19,10 @@ const PublicUserPage = () => {
   return (
     <div className="p-4">
       {sections ? (
-        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-4">
-          {sections.map((section) => (
-            <SectionSquare key={section.name} name={section.name} />
-          ))}
-        </div>
+        <main className="p-4">
+          <h1 className="text-2xl font-bold">Cemetery Map</h1>
+          <CemeteryMap sections={sections} />
+        </main>
       ) : (
         <p>Loading sections...</p>
       )}
