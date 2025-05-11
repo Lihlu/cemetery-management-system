@@ -8,6 +8,7 @@ export interface ICemeterySection {
   numberOfRows: number;
   totalCapacity: number;
   numberOfAvailableSites: number;
+  sitesPerRow: number;
 }
 
 export interface ICemeterySectionStateContext {
@@ -15,11 +16,14 @@ export interface ICemeterySectionStateContext {
   isSuccess: boolean;
   isError: boolean;
   sections?: ICemeterySection[];
+  selectedSection?: ICemeterySection;
 }
 
 export interface ICemeterySectionActionContext {
   getAllSections: () => void;
   resetStateFlags: () => void;
+  setSelectedSection: (section: ICemeterySection) => void;
+  clearSelectedSection: () => void;
 }
 
 export const INITIAL_STATE: ICemeterySectionStateContext = {

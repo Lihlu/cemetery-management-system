@@ -5,13 +5,16 @@ import { getAxiosInstance } from "@/utils/axios-instance";
 import {
   CemeterySectionActionContext,
   CemeterySectionStateContext,
+  ICemeterySection,
   INITIAL_STATE,
 } from "./context";
 import {
+  clearSelectedSectionAction,
   getAllCemeterySectionsError,
   getAllCemeterySectionsPending,
   getAllCemeterySectionsSuccess,
   resetStateFlagsAction,
+  setSelectedSectionAction,
 } from "./actions";
 
 export const CemeterySectionProvider = ({
@@ -39,6 +42,13 @@ export const CemeterySectionProvider = ({
       });
   };
 
+  const setSelectedSection = (section: ICemeterySection) => {
+    dispatch(setSelectedSectionAction(section));
+  };
+  const clearSelectedSection = () => {
+    dispatch(clearSelectedSectionAction());
+  };
+
   const resetStateFlags = async () => {
     dispatch(resetStateFlagsAction());
   };
@@ -46,7 +56,12 @@ export const CemeterySectionProvider = ({
   return (
     <CemeterySectionStateContext.Provider value={state}>
       <CemeterySectionActionContext.Provider
-        value={{ getAllSections, resetStateFlags }}
+        value={{
+          getAllSections,
+          setSelectedSection,
+          clearSelectedSection,
+          resetStateFlags,
+        }}
       >
         {children}
       </CemeterySectionActionContext.Provider>

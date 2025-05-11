@@ -9,5 +9,6 @@ namespace CemeteryManagementSystem.Services.GraveSiteService
     public interface IGraveSiteAppService : IAsyncCrudAppService<GraveSiteDto, Guid>
     {
         public Task<List<GraveSiteDto>> GetByOwnerIdAsync(long ownerId);
+        public Task<List<GraveSiteDto>> GetBySectionIdAsync(Guid sectionId);
     }
 }
