@@ -18,6 +18,7 @@ export const GravesiteReducer = handleActions<IGravesiteStateContext>(
       ...action.payload,
     }),
 
+    // Handling get by owner id actions
     [GravesiteActionEnums.getByOwnerIdPending]: (state, action) => ({
       ...state,
       ...action.payload,
@@ -30,6 +31,21 @@ export const GravesiteReducer = handleActions<IGravesiteStateContext>(
       ...state,
       ...action.payload,
     }),
+
+    // Handling get by cemetery section id actions
+    [GravesiteActionEnums.getByCemeterySectionIdPending]: (state, action) => ({
+      ...state,
+      ...action.payload,
+    }),
+    [GravesiteActionEnums.getByCemeterySectionIdSuccess]: (state, action) => ({
+      ...state,
+      ...action.payload,
+    }),
+    [GravesiteActionEnums.getByCemeterySectionIdError]: (state, action) => ({
+      ...state,
+      ...action.payload,
+    }),
+
     [GravesiteActionEnums.resetStateFlagsAction]: (state, action) => ({
       ...state,
       ...action.payload,

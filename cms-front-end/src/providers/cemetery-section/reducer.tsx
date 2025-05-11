@@ -28,6 +28,22 @@ export const CemeterySectionReducer =
         ...action.payload,
       }),
 
+      // Handling selected section actions
+      [CemeterySectionActionEnums.setSelectedSectionAction]: (
+        state,
+        action,
+      ) => ({
+        ...state,
+        ...action.payload,
+      }),
+      [CemeterySectionActionEnums.clearSelectedSectionAction]: (
+        state,
+        action,
+      ) => ({
+        ...state,
+        ...action.payload,
+      }),
+
       [CemeterySectionActionEnums.resetStateFlagsAction]: (state, action) => ({
         ...state,
         ...action.payload,

@@ -9,6 +9,8 @@ namespace CemeteryManagementSystem.Domain.GraveSite
         public string SiteNumber { get; set; }
         public bool IsExtraDeep { get; set; }
         public string GraveType { get; set; }
+        public int Row { get; set; }
+        public int Column { get; set; }
         public string Occupant1IdNumber { get; set; }
         public string Occupant2IdNumber { get; set; }
         public long OwnerId { get; set; }

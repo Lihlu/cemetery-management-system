@@ -7,6 +7,8 @@ export interface IGravesite {
   siteNumber: string;
   isExtraDeep: boolean;
   graveType: string;
+  row: number;
+  column: number;
   occupant1IdNumber: string;
   occupant2IdNumber: string;
   ownerId: number;
@@ -23,6 +25,7 @@ export interface IGravesiteStateContext {
 export interface IGravesiteActionContext {
   getAllGravesites: () => Promise<void>;
   getByOwnerId: (ownerId: number) => void;
+  getByCemeterySectionId: (sectionId: string) => void;
   resetStateFlags: () => void;
 }
 

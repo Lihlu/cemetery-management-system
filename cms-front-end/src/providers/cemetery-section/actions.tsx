@@ -6,6 +6,9 @@ export enum CemeterySectionActionEnums {
   getAllCemeterySectionsSuccess = "GET_ALL_CEMETERY_SECTIONS_SUCCESS",
   getAllCemeterySectionsError = "GET_ALL_CEMETERY_SECTIONS_ERROR",
 
+  setSelectedSectionAction = "SET_SELECTED_SECTION",
+  clearSelectedSectionAction = "CLEAR_SELECTED_SECTION",
+
   resetStateFlagsAction = "RESET_STATE_FLAGS",
 }
 
@@ -31,6 +34,22 @@ export const getAllCemeterySectionsError =
     CemeterySectionActionEnums.getAllCemeterySectionsError,
     () => ({ isPending: false, isSuccess: false, isError: true }),
   );
+
+export const setSelectedSectionAction = createAction<
+  ICemeterySectionStateContext,
+  ICemeterySection
+>(
+  CemeterySectionActionEnums.setSelectedSectionAction,
+  (section: ICemeterySection) => ({
+    selectedSection: section,
+  }),
+);
+export const clearSelectedSectionAction =
+  createAction<ICemeterySectionStateContext>(
+    CemeterySectionActionEnums.clearSelectedSectionAction,
+    () => ({ selectedSection: undefined }),
+  );
+
 export const resetStateFlagsAction = createAction<ICemeterySectionStateContext>(
   CemeterySectionActionEnums.resetStateFlagsAction,
   () => ({ isPending: false, isSuccess: false, isError: false }),
