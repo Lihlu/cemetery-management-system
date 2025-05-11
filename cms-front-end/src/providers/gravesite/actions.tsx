@@ -10,6 +10,10 @@ export enum GravesiteActionEnums {
   getByOwnerIdSuccess = "GET_BY_OWNER_ID_SUCCESS",
   getByOwnerIdError = "GET_BY_OWNER_ID_ERROR",
 
+  getByCemeterySectionIdPending = "GET_BY_CEMETERY_SECTION_ID_PENDING",
+  getByCemeterySectionIdSuccess = "GET_BY_CEMETERY_SECTION_ID_SUCCESS",
+  getByCemeterySectionIdError = "GET_BY_CEMETERY_SECTION_ID_ERROR",
+
   resetStateFlagsAction = "RESET_STATE_FLAGS",
 }
 export const getAllGravesitesPending = createAction<IGravesiteStateContext>(
@@ -48,6 +52,28 @@ export const getByOwnerIdSuccess = createAction<
 }));
 export const getByOwnerIdError = createAction<IGravesiteStateContext>(
   GravesiteActionEnums.getByOwnerIdError,
+  () => ({ isPending: false, isSuccess: false, isError: true }),
+);
+
+export const getByCemeterySectionIdPending =
+  createAction<IGravesiteStateContext>(
+    GravesiteActionEnums.getByCemeterySectionIdPending,
+    () => ({ isPending: true, isSuccess: false, isError: false }),
+  );
+export const getByCemeterySectionIdSuccess = createAction<
+  IGravesiteStateContext,
+  IGravesite[]
+>(
+  GravesiteActionEnums.getByCemeterySectionIdSuccess,
+  (gravesiteList: IGravesite[]) => ({
+    isPending: false,
+    isSuccess: true,
+    isError: false,
+    gravesiteList,
+  }),
+);
+export const getByCemeterySectionIdError = createAction<IGravesiteStateContext>(
+  GravesiteActionEnums.getByCemeterySectionIdError,
   () => ({ isPending: false, isSuccess: false, isError: true }),
 );
 
