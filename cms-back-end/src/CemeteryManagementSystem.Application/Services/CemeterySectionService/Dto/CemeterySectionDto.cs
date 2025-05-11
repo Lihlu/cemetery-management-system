@@ -3,6 +3,7 @@ using Abp.Application.Services.Dto;
 using System.ComponentModel.DataAnnotations;
 using Abp.AutoMapper;
 using CemeteryManagementSystem.Domain.CemeterySection;
+using System.Collections.Generic;
 
 namespace CemeteryManagementSystem.Services.CemeterySectionService.Dto
 {
@@ -28,5 +29,7 @@ namespace CemeteryManagementSystem.Services.CemeterySectionService.Dto
         [Required]
         [Range(0, int.MaxValue, ErrorMessage = "Number of available sites cannot be negative.")]
         public int NumberOfAvailableSites { get; set; }
+
+        public List<int> sitesPerRow { get; set; }
     }
 }
