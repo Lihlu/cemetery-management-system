@@ -26,5 +26,12 @@ namespace CemeteryManagementSystem.Services.GraveSiteService
             return ObjectMapper.Map<List<GraveSiteDto>>(gravesites);
         }
 
+        public async Task<List<GraveSiteDto>> GetBySectionIdAsync(Guid sectionId)
+        {
+            var gravesites = await _gravesiteManager.GetBySectionId(sectionId);
+
+            return ObjectMapper.Map<List<GraveSiteDto>>(gravesites);
+        }
+
     }
 }
