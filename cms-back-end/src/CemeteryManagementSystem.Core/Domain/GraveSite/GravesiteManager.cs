@@ -23,5 +23,12 @@ namespace CemeteryManagementSystem.Domain.GraveSite
                  .Where(g => g.OwnerId == ownerId)
                  .ToListAsync();
         }
+
+        public async Task<IEnumerable<GraveSite>> GetBySectionId(Guid sectionId)
+        {
+            return await _graveSiteRepository.GetAll()
+                .Where(g => g.CemeterySectionId == sectionId)
+                .ToListAsync();
+        }
     }
 }
