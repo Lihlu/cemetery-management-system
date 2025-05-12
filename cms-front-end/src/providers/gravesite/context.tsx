@@ -9,6 +9,7 @@ export interface IGravesite {
   graveType: string;
   row: number;
   column: number;
+  isReserved: boolean;
   occupant1IdNumber: string;
   occupant2IdNumber: string;
   ownerId: number;
