@@ -124,8 +124,8 @@ export const useStyles = createStyles(({ css, token }) => {
       border-color: ${colors.primary};
 
       &:hover {
-        background-color: ${colors.primary}ee;
-        border-color: ${colors.primary}ee;
+        background-color: ${colors.mainText} !important;
+        border-color: ${colors.mainText} !important;
       }
     `,
     divider: css`
@@ -148,8 +148,8 @@ export const useStyles = createStyles(({ css, token }) => {
 
       &:hover {
         background-color: ${colors.background};
-        color: ${colors.mainText};
-        border-color: ${colors.mainText};
+        color: ${colors.mainText} !important;
+        border-color: ${colors.mainText} !important;
       }
     `,
   };
