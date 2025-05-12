@@ -12,7 +12,6 @@ import {
   Divider,
 } from "antd";
 import {
-  RocketOutlined,
   TeamOutlined,
   AppstoreOutlined,
   MailOutlined,
@@ -46,7 +45,13 @@ const LandingPage = () => {
       {/* Header Navigation */}
       <Header className={styles.header}>
         <div className={styles.logo}>
-          <RocketOutlined /> Memoria
+          <Image
+            src="/images/logo-small.ico"
+            alt="Memoria Hero Image"
+            width={50}
+            height={50}
+          />{" "}
+          Memoria
         </div>
         <div className={styles.mobileMenuButton} onClick={toggleMenu}>
           <div className={styles.menuBar}></div>
