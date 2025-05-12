@@ -1,15 +1,17 @@
 import React from "react";
 
 interface TombstoneProps {
-  x: number;
-  y: number;
-  status: "available" | "reserved" | "selected";
+  isReserved: boolean;
+  isSelected: boolean;
   onClick: () => void;
 }
+const selectionStatus = (isSelected: boolean) => {
+  const selectionColor = isSelected ? "#0000FF" : "#AAFF00  ";
+  return selectionColor;
+};
 
-const Tombstone = ({ status, onClick }: TombstoneProps) => {
-  const color =
-    status === "available" ? "#666" : status === "reserved" ? "#222" : "red";
+const Tombstone = ({ isReserved, isSelected, onClick }: TombstoneProps) => {
+  const color = isReserved ? "#D3D3D3" : selectionStatus(isSelected);
 
   return (
     <svg width="24" height="30" onClick={onClick} style={{ cursor: "pointer" }}>
