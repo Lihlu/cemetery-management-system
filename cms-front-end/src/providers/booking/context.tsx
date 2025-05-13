@@ -12,12 +12,18 @@ export interface IBooking {
   specialRequest: string;
 }
 
+export interface IBookingWithBookerInfo extends IBooking {
+  bookerName: string;
+  deceasedPersonName: string;
+}
+
 export interface IBookingStateContext {
   isPending: boolean;
   isSuccess: boolean;
   isError: boolean;
   booking?: IBooking;
   bookingList?: IBooking[];
+  fullBookingList?: IBookingWithBookerInfo[];
 }
 export interface IBookingActionContext {
   getAllBookings: () => Promise<void>;

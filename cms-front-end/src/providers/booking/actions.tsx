@@ -1,5 +1,9 @@
 import { createAction } from "redux-actions";
-import { IBooking, IBookingStateContext } from "./context";
+import {
+  IBooking,
+  IBookingStateContext,
+  IBookingWithBookerInfo,
+} from "./context";
 
 export enum BookingActionEnums {
   getAllBookingsPending = "GET_ALL_BOOKINGS_PENDING",
@@ -37,12 +41,15 @@ export const getAllBookingsPending = createAction<IBookingStateContext>(
 export const getAllBookingsSuccess = createAction<
   IBookingStateContext,
   IBooking[]
->(BookingActionEnums.getAllBookingsSuccess, (bookings) => ({
-  isPending: false,
-  isSuccess: true,
-  isError: false,
-  bookings,
-}));
+>(
+  BookingActionEnums.getAllBookingsSuccess,
+  (fullBookingList: IBookingWithBookerInfo) => ({
+    isPending: false,
+    isSuccess: true,
+    isError: false,
+    fullBookingList,
+  }),
+);
 
 export const getAllBookingsError = createAction<IBookingStateContext, string>(
   BookingActionEnums.getAllBookingsError,

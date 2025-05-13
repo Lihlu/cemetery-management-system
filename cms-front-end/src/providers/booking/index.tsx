@@ -41,7 +41,7 @@ export const BookingProvider = ({
   const getAllBookings = async () => {
     dispatch(getAllBookingsPending());
 
-    const endpoint: string = `/api/services/app/Booking/GetAll`;
+    const endpoint: string = `/api/services/app/Booking/GetAllBookings`;
 
     await instance
       .get(endpoint)
