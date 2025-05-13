@@ -48,7 +48,7 @@ interface ISearchValues {
 
 const SearchDeceasedPersonPage = () => {
   const { styles } = useStyles();
-  const { searchDeceasedPerson, resetStateFlags } = useDeceasedPersonActions();
+  const { searchDeceasedPerson } = useDeceasedPersonActions();
   const { searchResults, isPending } = useDeceasedPersonState();
   const [form] = Form.useForm();
   const [isMobile, setIsMobile] = useState(false);
@@ -88,10 +88,6 @@ const SearchDeceasedPersonPage = () => {
 
     searchDeceasedPerson(searchParams);
   };
-
-  useEffect(() => {
-    resetStateFlags();
-  }, [resetStateFlags]);
 
   return (
     <ConfigProvider
