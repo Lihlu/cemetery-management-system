@@ -1,21 +1,6 @@
 "use client";
 import { createContext } from "react";
-import { IDeceasedPerson } from "../deceased-person/context";
-
-export interface IBooking {
-  id: string;
-  bookerId: string;
-  deceasedPersonId: string;
-  deceasedPerson: IDeceasedPerson;
-  gravesiteId: string;
-  dateAndTimeOfFuneral: string;
-  specialRequest: string;
-}
-
-export interface IBookingWithBookerInfo extends IBooking {
-  bookerName: string;
-  deceasedPersonName: string;
-}
+import { IBooking, IBookingWithBookerInfo } from "./models";
 
 export interface IBookingStateContext {
   isPending: boolean;

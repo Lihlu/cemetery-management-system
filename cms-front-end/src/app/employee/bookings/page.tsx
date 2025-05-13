@@ -4,6 +4,10 @@ import { Spin, Table } from "antd";
 import { useEffect } from "react";
 import { useStyles } from "./style/style";
 import dayjs from "dayjs";
+import {
+  BookingStatusLabels,
+  BookingTypeLabels,
+} from "@/providers/booking/models";
 
 const BookingsPage = () => {
   const { fullBookingList, isPending } = useBookingState();
@@ -27,7 +31,7 @@ const BookingsPage = () => {
       columns={[
         {
           title: "Date & Time",
-          dataIndex: "dateAndTimeOfFuneral",
+          dataIndex: "dateAndTimeOfService",
           render: (value: string) =>
             value ? dayjs(value).format("YYYY-MM-DD HH:mm") : "N/A",
         },
@@ -40,8 +44,23 @@ const BookingsPage = () => {
           dataIndex: "deceasedPersonName",
         },
         {
+          title: "Grave Site",
+          dataIndex: "graveSiteNumber",
+        },
+        {
+          title: "Booking Type",
+          dataIndex: "bookingType",
+          render: (value) => BookingTypeLabels[value] || value,
+        },
+        {
+          title: "Status",
+          dataIndex: "bookingStatus",
+          render: (value) => BookingStatusLabels[value] || value,
+        },
+        {
           title: "Special Request",
           dataIndex: "specialRequest",
+          render: (value: string) => value || "None",
         },
       ]}
     />
