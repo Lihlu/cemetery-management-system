@@ -1,14 +1,16 @@
 import { createStyles } from "antd-style";
 
+// Define our color palette
 const colors = {
-  background: "#F8F9FA",
-  mainText: "#1D2D44",
-  secondaryText: "#B0B8C1",
-  primary: "#C8A96B",
-  secondary: "#D9D6EA",
+  background: "#F8F9FA", // Soft White
+  mainText: "#1D2D44", // Deep Navy Blue
+  secondaryText: "#B0B8C1", // Ash Gray
+  primary: "#C8A96B", // Muted Gold
+  secondary: "#D9D6EA", // Gentle Lavender
 };
 
 export const useStyles = createStyles(({ css, token }) => {
+  // Override Ant Design's default token colors
   token.colorPrimary = colors.primary;
 
   return {
@@ -22,15 +24,18 @@ export const useStyles = createStyles(({ css, token }) => {
         ${colors.background} 0%,
         ${colors.secondary} 100%
       );
-      padding: 24px;
+      padding: 16px;
     `,
     contentWrapper: css`
       width: 100%;
-      max-width: 500px;
+      max-width: 460px;
     `,
     loadingOverlay: css`
       position: fixed;
-      inset: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       background-color: rgba(0, 0, 0, 0.4);
       display: flex;
       justify-content: center;
@@ -38,83 +43,64 @@ export const useStyles = createStyles(({ css, token }) => {
       z-index: 1000;
     `,
     loginCard: css`
-      border-radius: 14px;
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-      padding: 16px;
-      background: white;
-      margin: 0px;
-    `,
-    signUpCard: css`
-      border-radius: 14px;
-      box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-      padding: 0px;
-      margin: 0px;
+      border-radius: 12px;
+      box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+      padding: 32px;
       background: white;
     `,
     logoContainer: css`
       display: flex;
       justify-content: center;
+      margin-bottom: 24px;
     `,
     logo: css`
+      background-color: ${colors.primary};
+      border-radius: 50%;
+      width: 10px;
+      height: 10px;
       display: flex;
       justify-content: center;
       align-items: center;
-
-      img {
-        width: 120px;
-        height: auto;
-      }
+      margin-bottom: 24px;
     `,
-
     formTitle: css`
       color: ${colors.mainText};
       text-align: center;
       margin-bottom: 8px;
-      font-weight: 700;
-      font-size: 26px;
+      font-weight: 600;
     `,
     formSubtitle: css`
+      display: block;
       text-align: center;
       margin-bottom: 32px;
       color: ${colors.secondaryText};
-      font-size: 14px;
-    `,
-    formRow: css`
-      display: flex;
-      gap: 16px;
-
-      .ant-form-item {
-        flex: 1;
-      }
-    `,
-    halfWidthInput: css`
-      flex: 1;
     `,
     loginForm: css`
-      .ant-form-item {
-        margin-bottom: 12px;
-      }
-
       .ant-form-item-label > label {
         color: ${colors.mainText};
       }
     `,
-
     input: css`
       border-radius: 6px;
       border-color: ${colors.secondary};
-
-      &:hover,
-      &:focus-within {
-        border-color: ${colors.primary};
-      }
     `,
     inputIcon: css`
       color: ${colors.secondaryText};
       margin-right: 8px;
     `,
+    forgotPasswordContainer: css`
+      text-align: right;
+    `,
+    forgotPassword: css`
+      color: ${colors.primary};
+      transition: color 0.3s;
+
+      &:hover {
+        color: ${colors.mainText};
+      }
+    `,
     submitContainer: css`
-      margin-top: 16px;
+      margin-bottom: 0;
     `,
     submitButton: css`
       border-radius: 6px;
@@ -124,16 +110,15 @@ export const useStyles = createStyles(({ css, token }) => {
       border-color: ${colors.primary};
 
       &:hover {
-        background-color: ${colors.mainText} !important;
-        border-color: ${colors.mainText} !important;
+        background-color: ${colors.primary}ee;
+        border-color: ${colors.primary}ee;
       }
     `,
     divider: css`
-      margin: 24px 0;
+      margin: 10px 0;
 
       .ant-divider-inner-text {
         font-size: 14px;
-        color: ${colors.secondaryText};
       }
     `,
     registerContainer: css`
@@ -143,13 +128,13 @@ export const useStyles = createStyles(({ css, token }) => {
       border-radius: 6px;
       font-weight: 500;
       background-color: white;
-      border: 1px solid ${colors.primary};
+      border-color: ${colors.primary};
       color: ${colors.primary};
 
       &:hover {
         background-color: ${colors.background};
-        color: ${colors.mainText} !important;
-        border-color: ${colors.mainText} !important;
+        border-color: ${colors.mainText};
+        color: ${colors.mainText};
       }
     `,
   };

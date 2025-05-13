@@ -92,8 +92,9 @@ export const useLandingStyles = createStyles(({ css, token }) => {
         color: white;
 
         &:hover {
-          background-color: ${colors.primary}dd;
-          border-color: ${colors.primary}dd;
+          background-color: ${colors.mainText} !important;
+          border-color: ${colors.mainText} !important;
+          color: white !important;
         }
       }
 
@@ -155,8 +156,9 @@ export const useLandingStyles = createStyles(({ css, token }) => {
         color: white;
 
         &:hover {
-          background-color: ${colors.primary}dd;
-          border-color: ${colors.primary}dd;
+          background-color: ${colors.mainText} !important;
+          border-color: ${colors.mainText} !important;
+          color: white !important;
         }
       }
 
@@ -367,7 +369,7 @@ export const useLandingStyles = createStyles(({ css, token }) => {
     copyright: css`
       text-align: center;
       margin-top: 24px;
-      color: ${colors.secondaryText};
+      color: ${colors.secondaryText} !important;
     `,
   };
 });
