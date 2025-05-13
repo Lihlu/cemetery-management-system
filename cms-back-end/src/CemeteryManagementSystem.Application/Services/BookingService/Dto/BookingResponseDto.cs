@@ -9,11 +9,19 @@ namespace CemeteryManagementSystem.Services.BookingService.Dto
     public class BookingResponseDto : EntityDto<Guid>
     {
         public long BookerId { get; set; }
-        public Guid DeceasedPersonId { get; set; }
-        public DateTime DateAndTimeOfFuneral { get; set; }
-        public string SpecialRequest { get; set; }
         public string BookerName { get; set; }
+
+        public Guid DeceasedPersonId { get; set; }
         public string DeceasedPersonName { get; set; }
 
+        public Guid GraveSiteId { get; set; }
+        public string GraveSiteNumber { get; set; }
+
+        public DateTime DateAndTimeOfService { get; set; }
+
+        public ReflistBookingType BookingType { get; set; }
+        public ReflistBookingStatus BookingStatus { get; set; }
+
+        public string? SpecialRequest { get; set; }
     }
 }

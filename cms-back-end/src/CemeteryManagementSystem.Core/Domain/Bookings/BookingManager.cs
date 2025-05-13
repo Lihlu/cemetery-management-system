@@ -30,8 +30,12 @@ namespace CemeteryManagementSystem.Domain.Bookings
         {
             var bookings = await _bookingRepository.GetAll()
                 .Include(b => b.Booker)
-     .ToListAsync();
+                .Include(b => b.DeceasedPerson)
+                .Include(b => b.GraveSite)
+                .ToListAsync();
+
             return bookings;
         }
+
     }
 }
