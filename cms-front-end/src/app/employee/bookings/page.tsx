@@ -5,9 +5,10 @@ import { useEffect } from "react";
 import { useStyles } from "./style/style";
 import dayjs from "dayjs";
 import {
-  BookingStatusLabels,
-  BookingTypeLabels,
+  ReflistBookingStatus,
+  ReflistBookingType,
 } from "@/providers/booking/models";
+import { getStatusTag, getTypeTag } from "@/utils/booking-helpers";
 
 const BookingsPage = () => {
   const { fullBookingList, isPending } = useBookingState();
@@ -50,12 +51,12 @@ const BookingsPage = () => {
         {
           title: "Booking Type",
           dataIndex: "bookingType",
-          render: (value) => BookingTypeLabels[value] || value,
+          render: (type: ReflistBookingType) => getTypeTag(type),
         },
         {
           title: "Status",
           dataIndex: "bookingStatus",
-          render: (value) => BookingStatusLabels[value] || value,
+          render: (status: ReflistBookingStatus) => getStatusTag(status),
         },
         {
           title: "Special Request",
