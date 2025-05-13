@@ -5,6 +5,8 @@ import {
   UserOutlined,
   LogoutOutlined,
   SearchOutlined,
+  EnvironmentOutlined,
+  CalendarOutlined,
 } from "@ant-design/icons";
 import { useStyles } from "./style/style";
 import { useState } from "react";
@@ -17,10 +19,15 @@ import AppSider from "@/components/shared/app-sider/app-sider";
 const { Header, Content } = Layout;
 const { useBreakpoint } = Grid;
 
-const employeeNavItems = [
+const menuItems = [
   { key: "/employee", label: "Home", icon: <HomeOutlined /> },
-  { key: "/employee/gravesite", label: "Gravesites", icon: <UserOutlined /> },
+  {
+    key: "/employee/gravesite",
+    label: "Gravesites",
+    icon: <EnvironmentOutlined />,
+  },
   { key: "/employee/search", label: "Search", icon: <SearchOutlined /> },
+  { key: "/employee/bookings", label: "Bookings", icon: <CalendarOutlined /> },
 ];
 
 const EmployeeLayout = ({ children }: { children: React.ReactNode }) => {
@@ -57,7 +64,7 @@ const EmployeeLayout = ({ children }: { children: React.ReactNode }) => {
         <AppSider
           activeKey={activeKey}
           handleNavClick={handleNavClick}
-          navItems={employeeNavItems}
+          navItems={menuItems}
         />
       )}
 
@@ -78,7 +85,7 @@ const EmployeeLayout = ({ children }: { children: React.ReactNode }) => {
       {/* Mobile Bottom Navbar */}
       {screens.xs && (
         <BottomNav
-          navItems={employeeNavItems.map((item) => ({
+          navItems={menuItems.map((item) => ({
             key: item.key,
             label: item.label,
             icon: item.icon,
