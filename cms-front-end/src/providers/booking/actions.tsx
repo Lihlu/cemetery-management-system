@@ -1,9 +1,6 @@
 import { createAction } from "redux-actions";
-import {
-  IBooking,
-  IBookingStateContext,
-  IBookingWithBookerInfo,
-} from "./context";
+import { IBookingStateContext } from "./context";
+import { IBooking, IBookingWithBookerInfo } from "./models";
 
 export enum BookingActionEnums {
   getAllBookingsPending = "GET_ALL_BOOKINGS_PENDING",

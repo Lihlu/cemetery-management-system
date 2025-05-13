@@ -5,7 +5,6 @@ import {
   BookingActionContext,
   BookingStateContext,
   INITIAL_STATE,
-  IBooking,
 } from "./context";
 import {
   resetStateFlagsAction,
@@ -29,6 +28,7 @@ import {
   deleteBookingSuccess,
 } from "./actions";
 import { getAxiosInstance } from "@/utils/axios-instance";
+import { IBooking } from "./models";
 
 export const BookingProvider = ({
   children,

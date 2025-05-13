@@ -8,7 +8,7 @@ import { PlusOutlined } from "@ant-design/icons";
 import { useStyles } from "./style/style";
 import BookingModal from "@/components/shared/booking-modal/booking-modal";
 import BookingTable from "@/components/shared/booking-table/booking-table";
-import { IBooking } from "@/providers/booking/context";
+import { IBooking } from "@/providers/booking/models";
 
 const { Title } = Typography;
 
