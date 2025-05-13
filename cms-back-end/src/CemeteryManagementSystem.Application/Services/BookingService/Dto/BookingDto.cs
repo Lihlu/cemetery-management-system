@@ -17,9 +17,17 @@ namespace CemeteryManagementSystem.Services.BookingService.Dto
         public Guid DeceasedPersonId { get; set; }
 
         [Required]
-        public DateTime DateAndTimeOfFuneral { get; set; }
+        public Guid GraveSiteId { get; set; }
 
-        public DeceasedPerson DeceasedPerson { get; set; }
-        public string SpecialRequest { get; set; }
+        [Required]
+        public DateTime DateAndTimeOfService { get; set; }
+
+        [Required]
+        public ReflistBookingType BookingType { get; set; }
+
+        [Required]
+        public ReflistBookingStatus BookingStatus { get; set; }
+
+        public string? SpecialRequest { get; set; }
     }
 }

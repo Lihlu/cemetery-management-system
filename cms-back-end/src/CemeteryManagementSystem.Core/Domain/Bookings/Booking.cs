@@ -1,4 +1,5 @@
 ﻿using System;
+using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using Abp.Domain.Entities.Auditing;
 using CemeteryManagementSystem.Authorization.Users;
@@ -16,7 +17,7 @@ namespace CemeteryManagementSystem.Domain.Bookings
         public Guid GraveSiteId { get; set; }
         [ForeignKey(nameof(GraveSiteId))]
         public GraveSite.GraveSite? GraveSite { get; set; }
-        public DateTime ServiceDateTime{ get; set; }
+        public DateTime ServiceDateTime { get; set; }
         [Required]
         public ReflistBookingType BookingType { get; set; }
         [Required]

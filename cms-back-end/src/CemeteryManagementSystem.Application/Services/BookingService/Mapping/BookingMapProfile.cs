@@ -7,12 +7,12 @@ namespace CemeteryManagementSystem.Services.BookingService.Mapping
         public BookingMapProfile()
         {
             CreateMap<Domain.Bookings.Booking, Dto.BookingResponseDto>()
-                .ForMember(dest => dest.BookerName, 
+                .ForMember(dest => dest.BookerName,
                            opt => opt.MapFrom(src => src.Booker.Name))
-                .ForMember(dest => dest.DeceasedPersonName, 
+                .ForMember(dest => dest.DeceasedPersonName,
                            opt => opt.MapFrom(src => $"{src.DeceasedPerson.FirstName} {src.DeceasedPerson.LastName}"))
-                .ForMember(dest => dest.GraveSiteNumber, 
-                           opt => opt.MapFrom(src => src.GraveSite.GraveNumber));
+                .ForMember(dest => dest.GraveSiteNumber,
+                           opt => opt.MapFrom(src => src.GraveSite.SiteNumber));
         }
     }
 }
