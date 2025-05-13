@@ -26,7 +26,7 @@ const BottomNav = ({ navItems }: BottomNavProps) => {
     <div className={styles.bottomNav}>
       <Space align="center" size="large">
         {navItems.map((item) => {
-          const isActive = pathname.startsWith(item.key);
+          const isActive = pathname === item.key;
           return (
             <Button
               key={item.key}

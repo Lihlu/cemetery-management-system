@@ -1,5 +1,5 @@
 "use client";
-import { Layout, Menu, Button, Grid, Dropdown } from "antd";
+import { Layout, Button, Grid, Dropdown } from "antd";
 import {
   HomeOutlined,
   UserOutlined,
@@ -13,8 +13,9 @@ import { useRouter } from "next/navigation";
 import { useAuthActions, useAuthState } from "@/providers/auth";
 import BottomNav from "@/components/shared/bottom-nav/bottom-nav";
 import withAuth from "@/hoc/withAuth";
+import AppSider from "@/components/shared/app-sider/app-sider";
 
-const { Sider, Header, Content } = Layout;
+const { Header, Content } = Layout;
 const { useBreakpoint } = Grid;
 
 const publicUserNavItems = [
@@ -62,19 +63,11 @@ const PublicUserLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <Layout className={styles.pageWrapper}>
       {!screens.xs && (
-        <Sider width={200} theme="light" className={styles.sider}>
-          <Menu
-            mode="inline"
-            selectedKeys={[activeKey]}
-            className={styles.menu}
-            onClick={({ key }) => handleNavClick(key.toString())}
-            items={publicUserNavItems.map((item) => ({
-              key: item.key,
-              icon: item.icon,
-              label: item.label,
-            }))}
-          />
-        </Sider>
+        <AppSider
+          activeKey={activeKey}
+          handleNavClick={handleNavClick}
+          navItems={publicUserNavItems}
+        />
       )}
 
       <Layout className={styles.mainLayout}>
