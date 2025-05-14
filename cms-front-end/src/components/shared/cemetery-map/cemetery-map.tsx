@@ -54,7 +54,7 @@ const CemeteryMap: React.FC<CemeteryMapProps> = ({ sections }) => {
               d={sectionToPath[section.name]}
               onClick={() => handleClick(section)}
               className="cursor-pointer transition-colors duration-200 hover:fill-[#1D2D44]"
-              fill="transparent"
+              fill="#88E788"
               stroke="#1D2D44"
               strokeWidth="2"
             />

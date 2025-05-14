@@ -22,7 +22,7 @@ const { useBreakpoint } = Grid;
 const menuItems = [
   { key: "/employee", label: "Home", icon: <HomeOutlined /> },
   {
-    key: "/employee/gravesite",
+    key: "/employee/gravesites",
     label: "Gravesites",
     icon: <EnvironmentOutlined />,
   },
