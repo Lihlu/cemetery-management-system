@@ -4,11 +4,14 @@ import {
   useCemeterySectionActions,
   useCemeterySectionState,
 } from "@/providers/cemetery-section";
+import { Spin } from "antd";
 import React, { useEffect } from "react";
+import { useStyles } from "./style/style";
 
 const PublicUserPage = () => {
   const { sections } = useCemeterySectionState();
   const { getAllSections } = useCemeterySectionActions();
+  const { styles } = useStyles();
 
   useEffect(() => {
     if (sections === undefined) {
@@ -24,7 +27,9 @@ const PublicUserPage = () => {
           <CemeteryMap sections={sections} />
         </main>
       ) : (
-        <p>Loading sections...</p>
+        <div className={styles.loadingOverlay}>
+          <Spin size="large" />
+        </div>
       )}
     </div>
   );

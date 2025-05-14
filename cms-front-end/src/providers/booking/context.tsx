@@ -1,16 +1,6 @@
 "use client";
 import { createContext } from "react";
-import { IDeceasedPerson } from "../deceased-person/context";
-
-export interface IBooking {
-  id: string;
-  bookerId: string;
-  deceasedPersonId: string;
-  deceasedPerson: IDeceasedPerson;
-  gravesiteId: string;
-  dateAndTimeOfFuneral: string;
-  specialRequest: string;
-}
+import { IBooking, IBookingWithBookerInfo } from "./models";
 
 export interface IBookingStateContext {
   isPending: boolean;
@@ -18,6 +8,7 @@ export interface IBookingStateContext {
   isError: boolean;
   booking?: IBooking;
   bookingList?: IBooking[];
+  fullBookingList?: IBookingWithBookerInfo[];
 }
 export interface IBookingActionContext {
   getAllBookings: () => Promise<void>;
