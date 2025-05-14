@@ -1,6 +1,7 @@
 using System.ComponentModel;
 
-namespace CemeteryManagementSystem.Domain.Bookings{
+namespace CemeteryManagementSystem.Domain.Bookings
+{
     public enum ReflistBookingType
     {
         [Description("Burial")]
