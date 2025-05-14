@@ -17,6 +17,7 @@ using System;
 using System.IO;
 using System.Linq;
 using System.Reflection;
+using CemeteryManagementSystem.Configurations;
 
 namespace CemeteryManagementSystem.Web.Host.Startup
 {
@@ -47,6 +48,7 @@ namespace CemeteryManagementSystem.Web.Host.Startup
             AuthConfigurer.Configure(services, _appConfiguration);
 
             services.AddHttpClient();
+            services.Configure<SmtpSettings>(_appConfiguration.GetSection("SmtpSettings"));
             services.AddSignalR();
 
             // Configure CORS for angular2 UI
