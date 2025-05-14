@@ -46,6 +46,20 @@ export const GravesiteReducer = handleActions<IGravesiteStateContext>(
       ...action.payload,
     }),
 
+    // Handling update gravesite actions
+    [GravesiteActionEnums.updateGravesitePending]: (state, action) => ({
+      ...state,
+      ...action.payload,
+    }),
+    [GravesiteActionEnums.updateGravesiteSuccess]: (state, action) => ({
+      ...state,
+      ...action.payload,
+    }),
+    [GravesiteActionEnums.updateGravesiteError]: (state, action) => ({
+      ...state,
+      ...action.payload,
+    }),
+
     [GravesiteActionEnums.resetStateFlagsAction]: (state, action) => ({
       ...state,
       ...action.payload,

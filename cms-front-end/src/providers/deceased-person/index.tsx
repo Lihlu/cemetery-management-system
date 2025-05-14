@@ -5,11 +5,18 @@ import { DeceasedPersonReducer } from "./reducer";
 import {
   DeceasedPersonActionContext,
   DeceasedPersonStateContext,
+  IDeceasedPerson,
   INITIAL_STATE,
   ISearchDeceasedPerson,
 } from "./context";
 
 import {
+  createDeceasedPersonError,
+  createDeceasedPersonPending,
+  createDeceasedPersonSuccess,
+  getByUserIdError,
+  getByUserIdPending,
+  getByUserIdSuccess,
   resetStateFlagsAction,
   searchDeceasedPersonError,
   searchDeceasedPersonPending,
@@ -39,6 +46,37 @@ export const DeceasedPersonProvider = ({
         dispatch(searchDeceasedPersonError());
       });
   };
+
+  const getByUserId = async (userId: number) => {
+    dispatch(getByUserIdPending());
+    const endpoint: string = `/api/services/app/DeceasedPerson/GetByRegisteredBy?registeredByUserId=${userId}`;
+    await instance
+      .get(endpoint)
+      .then((response) => {
+        dispatch(getByUserIdSuccess(response.data.result));
+      })
+      .catch((error) => {
+        console.error(error);
+        dispatch(getByUserIdError());
+      });
+  };
+
+  const createDeceasedPerson = async (deceasedPerson: IDeceasedPerson) => {
+    dispatch(createDeceasedPersonPending());
+    const endpoint: string = `/api/services/app/DeceasedPerson/Create`;
+    await instance
+      .post(endpoint, deceasedPerson)
+      .then((response) => {
+        if (response.status === 200) {
+          dispatch(createDeceasedPersonSuccess());
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        dispatch(createDeceasedPersonError());
+      });
+  };
+
   const resetStateFlags = () => {
     dispatch(resetStateFlagsAction());
   };
@@ -48,6 +86,8 @@ export const DeceasedPersonProvider = ({
       <DeceasedPersonActionContext.Provider
         value={{
           searchDeceasedPerson,
+          getByUserId,
+          createDeceasedPerson,
           resetStateFlags,
         }}
       >

@@ -1,17 +1,30 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { getAxiosInstance } from "@/utils/axios-instance";
 import { YocoInlineInstance } from "@/types/yoco";
+import { useGravesiteActions } from "@/providers/gravesite";
+import { IGravesite } from "@/providers/gravesite/context";
+import { useAuthState } from "@/providers/auth";
+import { useEmailActions } from "@/providers/email";
+import { gravesitePurchaseTemplate } from "@/providers/email/email-templates/gravesite-purchase";
 
 interface PaymentFormProps {
-  gravesiteName: string;
+  gravesite: IGravesite;
+  sectionName: string;
   gravesitePrice: number;
 }
 
-const PaymentForm = ({ gravesiteName, gravesitePrice }: PaymentFormProps) => {
-  const cardElementRef = useRef<HTMLDivElement>(null);
+const PaymentForm = ({
+  gravesite,
+  sectionName,
+  gravesitePrice,
+}: PaymentFormProps) => {
+  const { updateGravesite } = useGravesiteActions();
+  const { currentUser } = useAuthState();
+  const { sendEmail } = useEmailActions();
   const [inlineInstance, setInlineInstance] =
     useState<YocoInlineInstance | null>(null);
+  const [loading, setLoading] = useState(false);
   const instance = getAxiosInstance();
 
   useEffect(() => {
@@ -20,13 +33,13 @@ const PaymentForm = ({ gravesiteName, gravesitePrice }: PaymentFormProps) => {
     script.async = true;
 
     script.onload = () => {
-      // Safely get the public key
       const publicKey = process.env.NEXT_PUBLIC_YOCO_PUBLIC_KEY;
+
       if (!publicKey) {
-        throw new Error("Yoco public key is not defined");
+        console.error("Yoco public key is not defined.");
+        return;
       }
 
-      // Instantiate Yoco
       const yoco = new window.YocoSDK({ publicKey });
 
       const inline = yoco.inline({
@@ -43,11 +56,31 @@ const PaymentForm = ({ gravesiteName, gravesitePrice }: PaymentFormProps) => {
 
     return () => {
       script.remove();
-      if (inlineInstance) {
-        inlineInstance.unmount();
-      }
+      setInlineInstance((prev) => {
+        prev?.unmount();
+        return null;
+      });
     };
   }, [gravesitePrice]);
+
+  const updateGravesiteOwner = () => {
+    const updatedGravesite = {
+      ...gravesite,
+      ownerId: currentUser.id,
+      isReserved: true,
+    };
+    updateGravesite(updatedGravesite);
+    sendEmail({
+      to: currentUser.emailAddress,
+      subject: "Gravesite Purchase Confirmation",
+      body: gravesitePurchaseTemplate(
+        currentUser.name,
+        gravesitePrice,
+        gravesite,
+        sectionName,
+      ),
+    });
+  };
 
   const handlePayment = async () => {
     if (!inlineInstance) {
@@ -55,53 +88,54 @@ const PaymentForm = ({ gravesiteName, gravesitePrice }: PaymentFormProps) => {
       return;
     }
 
-    const result = await inlineInstance.createToken();
+    setLoading(true);
 
-    if (result.error) {
-      alert(result.error.message);
-    } else {
-      try {
-        await instance
-          .post(
-            `/api/services/app/Payment/Charge?token=${result.id}&amount=${gravesitePrice}`,
-            {
-              token: result.id,
-              amount: gravesitePrice,
-              gravesiteName: gravesiteName,
-            },
-          )
-          .catch((error) => {
-            console.error("Error:", error);
-            const errorText = error.response.text();
-            throw new Error(
-              `Server Error: ${error.response.status} ${errorText}`,
-            );
-          });
+    try {
+      const result = await inlineInstance.createToken();
 
-        alert("Payment successful!");
-      } catch (error) {
-        console.error("Payment failed:", error);
-        alert(`Payment failed: ${error.message}`);
+      if (result.error) {
+        alert(result.error.message);
+        return;
       }
+      console.log(gravesite);
+      await instance.post(`/api/services/app/Payment/Charge`, {
+        token: result.id,
+        amount: gravesitePrice,
+        gravesiteName: gravesite.siteNumber,
+      });
+
+      alert("Payment successful!");
+      updateGravesiteOwner();
+    } catch (error) {
+      console.error("Payment failed:", error);
+      const errorMessage =
+        error.response?.data || error.message || "An error occurred";
+      alert(`Payment failed: ${errorMessage}`);
+    } finally {
+      setLoading(false);
     }
   };
 
   return (
     <div style={{ padding: "2rem" }}>
-      <h1>Purchase {gravesiteName}</h1>
+      <h1>Purchase {gravesite?.siteNumber}</h1>
 
       <div style={{ marginBottom: "1rem" }}>
         <strong>Amount:</strong> R {(gravesitePrice / 100).toFixed(2)}
       </div>
 
-      <div
-        id="card-element"
-        ref={cardElementRef}
-        style={{ marginBottom: "1rem" }}
-      ></div>
+      <div id="card-element" style={{ marginBottom: "1rem" }}></div>
 
-      <button onClick={handlePayment} style={{ padding: "0.5rem 1rem" }}>
-        Pay Now
+      <button
+        onClick={handlePayment}
+        disabled={loading}
+        style={{
+          padding: "0.5rem 1rem",
+          opacity: loading ? 0.6 : 1,
+          cursor: loading ? "not-allowed" : "pointer",
+        }}
+      >
+        {loading ? "Processing..." : "Pay Now"}
       </button>
     </div>
   );

@@ -10,6 +10,7 @@ namespace CemeteryManagementSystem.Services.BookingService.Dto
     {
         public long BookerId { get; set; }
         public string BookerName { get; set; }
+        public string BookerEmail { get; set; }
 
         public Guid DeceasedPersonId { get; set; }
         public string DeceasedPersonName { get; set; }

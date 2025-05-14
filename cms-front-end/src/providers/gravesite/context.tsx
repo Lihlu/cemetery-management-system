@@ -27,6 +27,7 @@ export interface IGravesiteActionContext {
   getAllGravesites: () => Promise<void>;
   getByOwnerId: (ownerId: number) => void;
   getByCemeterySectionId: (sectionId: string) => void;
+  updateGravesite: (gravesite: IGravesite) => void;
   resetStateFlags: () => void;
 }
 

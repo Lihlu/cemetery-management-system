@@ -12,7 +12,9 @@ namespace CemeteryManagementSystem.Services.BookingService.Mapping
                 .ForMember(dest => dest.DeceasedPersonName,
                            opt => opt.MapFrom(src => $"{src.DeceasedPerson.FirstName} {src.DeceasedPerson.LastName}"))
                 .ForMember(dest => dest.GraveSiteNumber,
-                           opt => opt.MapFrom(src => src.GraveSite.SiteNumber));
+                           opt => opt.MapFrom(src => src.GraveSite.SiteNumber))
+                .ForMember(dest => dest.BookerEmail,
+                           opt => opt.MapFrom(src => src.Booker.EmailAddress));
         }
     }
 }

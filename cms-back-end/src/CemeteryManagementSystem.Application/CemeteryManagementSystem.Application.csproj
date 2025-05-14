@@ -1,17 +1,20 @@
-<Project Sdk="Microsoft.NET.Sdk">
-  <PropertyGroup>
-    <VersionPrefix>1.0.0.0</VersionPrefix>
-    <TargetFramework>net9.0</TargetFramework>
-    <AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
-    <AssemblyName>CemeteryManagementSystem.Application</AssemblyName>
-    <PackageId>CemeteryManagementSystem.Application</PackageId>
-    <GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
-    <GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
-    <GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
-    <RootNamespace>CemeteryManagementSystem</RootNamespace>
-    <GenerateDocumentationFile>true</GenerateDocumentationFile>
-  </PropertyGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\CemeteryManagementSystem.Core\CemeteryManagementSystem.Core.csproj" />
-  </ItemGroup>
+﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<VersionPrefix>1.0.0.0</VersionPrefix>
+		<TargetFramework>net9.0</TargetFramework>
+		<AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8+wp8+wpa81;</AssetTargetFallback>
+		<AssemblyName>CemeteryManagementSystem.Application</AssemblyName>
+		<PackageId>CemeteryManagementSystem.Application</PackageId>
+		<GenerateAssemblyConfigurationAttribute>false</GenerateAssemblyConfigurationAttribute>
+		<GenerateAssemblyCompanyAttribute>false</GenerateAssemblyCompanyAttribute>
+		<GenerateAssemblyProductAttribute>false</GenerateAssemblyProductAttribute>
+		<RootNamespace>CemeteryManagementSystem</RootNamespace>
+		<GenerateDocumentationFile>true</GenerateDocumentationFile>
+	</PropertyGroup>
+	<ItemGroup>
+		<PackageReference Include="MailKit" Version="4.12.0" />
+	</ItemGroup>
+	<ItemGroup>
+		<ProjectReference Include="..\CemeteryManagementSystem.Core\CemeteryManagementSystem.Core.csproj" />
+	</ItemGroup>
 </Project>

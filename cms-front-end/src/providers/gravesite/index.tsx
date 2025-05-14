@@ -4,6 +4,7 @@ import { GravesiteReducer } from "./reducer";
 import {
   GravesiteActionContext,
   GravesiteStateContext,
+  IGravesite,
   INITIAL_STATE,
 } from "./context";
 import {
@@ -17,6 +18,9 @@ import {
   getByCemeterySectionIdError,
   getByCemeterySectionIdSuccess,
   getByCemeterySectionIdPending,
+  updateGravesitePending,
+  updateGravesiteSuccess,
+  updateGravesiteError,
 } from "./actions";
 import { getAxiosInstance } from "@/utils/axios-instance";
 
@@ -34,7 +38,9 @@ export const GravesiteProvider = ({
     const endpoint: string = `/api/services/app/GraveSite/GetAll`;
 
     await instance
-      .get(endpoint)
+      .get(endpoint, {
+        params: { skipCount: 0, maxResultCount: 1000, sorting: "siteNumber" },
+      })
       .then((response) => {
         dispatch(getAllGravesitesSuccess(response?.data?.result?.items));
       })
@@ -76,6 +82,24 @@ export const GravesiteProvider = ({
       });
   };
 
+  const updateGravesite = async (gravesite: IGravesite) => {
+    dispatch(updateGravesitePending());
+
+    const endpoint: string = `/api/services/app/GraveSite/Update`;
+
+    await instance
+      .put(endpoint, gravesite)
+      .then((response) => {
+        if (response.status === 200) {
+          dispatch(updateGravesiteSuccess());
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        dispatch(updateGravesiteError());
+      });
+  };
+
   const resetStateFlags = () => {
     dispatch(resetStateFlagsAction());
   };
@@ -87,6 +111,7 @@ export const GravesiteProvider = ({
           resetStateFlags,
           getByOwnerId,
           getByCemeterySectionId,
+          updateGravesite,
         }}
       >
         {children}
@@ -99,7 +124,7 @@ export const useGravesiteState = () => {
   const context = useContext(GravesiteStateContext);
   if (context === undefined) {
     throw new Error(
-      "useGravesiteState must be used within a GravesiteProvider",
+      "useGravesiteState must be used within a GravesiteProvider"
     );
   }
   return context;
@@ -108,7 +133,7 @@ export const useGravesiteActions = () => {
   const context = useContext(GravesiteActionContext);
   if (context === undefined) {
     throw new Error(
-      "useGravesiteActions must be used within a GravesiteProvider",
+      "useGravesiteActions must be used within a GravesiteProvider"
     );
   }
   return context;
