@@ -15,6 +15,9 @@ import { toast } from "@/providers/toast/toast";
 import { ISignUpData } from "@/providers/auth/context";
 import { useAuthActions, useAuthState } from "@/providers/auth";
 import Link from "next/link";
+import { useEmailActions } from "@/providers/email";
+import { accountCreatedTemplate } from "@/providers/email/email-templates/account-created";
+import { IEmail } from "@/providers/email/context";
 
 const { Title, Text } = Typography;
 
@@ -22,12 +25,21 @@ const SignUp: React.FC = () => {
   const { styles } = useStyles();
   const { isPending, isSuccess, isError } = useAuthState();
   const { signUp, resetStateFlags } = useAuthActions();
+  const { sendEmail } = useEmailActions();
   const router = useRouter();
   const [form] = Form.useForm();
 
   const handleSignUp = async (values: ISignUpData) => {
     try {
       await signUp(values);
+      debugger;
+      const emailData: IEmail = {
+        to: values.email,
+        subject: "Account Created",
+        body: accountCreatedTemplate(values.name),
+        isBodyHtml: true,
+      };
+      sendEmail(emailData);
     } catch (error) {
       const errorMessage =
         error?.message || "Something went wrong. Please try again.";
