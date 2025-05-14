@@ -12,6 +12,7 @@ export interface IDeceasedPerson {
   graveNumber: string;
   section: string;
   isBuried: boolean;
+  registeredBy: number;
 }
 export interface ISearchDeceasedPerson {
   firstName?: string;
@@ -29,9 +30,12 @@ export interface IDeceasedPersonStateContext {
   isError: boolean;
   deceasedPerson?: IDeceasedPerson;
   searchResults?: IDeceasedPerson[];
+  registeredDeceasedPersons?: IDeceasedPerson[];
 }
 export interface IDeceasedPersonActionContext {
   searchDeceasedPerson: (query: ISearchDeceasedPerson) => Promise<void>;
+  getByUserId: (userId: number) => Promise<void>;
+  createDeceasedPerson: (deceasedPerson: IDeceasedPerson) => void;
   resetStateFlags: () => void;
 }
 

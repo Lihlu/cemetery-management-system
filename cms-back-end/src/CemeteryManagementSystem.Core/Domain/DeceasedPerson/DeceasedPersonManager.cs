@@ -29,7 +29,9 @@ namespace CemeteryManagementSystem.Domain.DeceasedPerson
             string graveNumber,
             string section,
             string idNumber,
-            bool isBuried = false)
+            long? registeredBy,
+            bool isBuried = false
+            )
         {
             // Check if the ID number is already registered
             var existingDeceased = await _deceasedPersonRepository.FirstOrDefaultAsync(d => d.IdNumber == idNumber);
@@ -48,7 +50,8 @@ namespace CemeteryManagementSystem.Domain.DeceasedPerson
                 GraveNumber = graveNumber,
                 Section = section,
                 IdNumber = idNumber,
-                isBuried = isBuried
+                isBuried = isBuried,
+                RegisteredBy = registeredBy
             };
 
             var result = await _deceasedPersonRepository.InsertAsync(deceasedPerson);
@@ -96,6 +99,14 @@ namespace CemeteryManagementSystem.Domain.DeceasedPerson
 
             return filteredPersons;
         }
+
+        public async Task<IEnumerable<DeceasedPerson>> GetDeceasedPersonsByRegisteredByAsync(long registeredByUserId)
+        {
+            var persons = await _deceasedPersonRepository.GetAllListAsync(d => d.RegisteredBy == registeredByUserId);
+            return persons;
+        }
+
+
 
     }
 }

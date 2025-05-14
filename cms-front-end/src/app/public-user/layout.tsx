@@ -20,6 +20,7 @@ const { useBreakpoint } = Grid;
 
 const publicUserNavItems = [
   { key: "/public-user", label: "Home", icon: <HomeOutlined /> },
+  { key: "/public-user/deceased", label: "Deceased", icon: <UserOutlined /> },
   {
     key: "/public-user/bookings",
     label: "Bookings",

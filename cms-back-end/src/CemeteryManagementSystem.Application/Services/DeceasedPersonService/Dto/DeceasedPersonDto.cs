@@ -24,5 +24,6 @@ namespace CemeteryManagementSystem.Services.DeceasedPersonService.Dto
         [Required]
         [StringLength(13, MinimumLength = 13, ErrorMessage = "Please make sure Identity Number is 13 digits")]
         public string IdNumber { get; set; }
+        public long? RegisteredBy { get; set; }
     }
 }

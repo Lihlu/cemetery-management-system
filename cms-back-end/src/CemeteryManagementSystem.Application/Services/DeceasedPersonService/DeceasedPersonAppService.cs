@@ -31,7 +31,8 @@ namespace CemeteryManagementSystem.Services.DeceasedPersonService
                 input.DateOfFuneral,
                 input.GraveNumber,
                 input.Section,
-                input.IdNumber
+                input.IdNumber,
+                input.RegisteredBy
             );
             return ObjectMapper.Map<DeceasedPersonDto>(deceasedPerson);
         }
@@ -50,5 +51,13 @@ namespace CemeteryManagementSystem.Services.DeceasedPersonService
                 ObjectMapper.Map<List<DeceasedPersonDto>>(pagedResults)
             );
         }
+
+        public async Task<List<DeceasedPersonDto>> GetByRegisteredByAsync(long registeredByUserId)
+        {
+            var persons = await _deceasedPersonManager.GetDeceasedPersonsByRegisteredByAsync(registeredByUserId);
+
+            return ObjectMapper.Map<List<DeceasedPersonDto>>(persons);
+        }
+
     }
 }

@@ -167,7 +167,8 @@ const SectionPage = () => {
         width={600}
       >
         <PaymentForm
-          gravesiteName={selectedGravesite?.siteNumber || ""}
+          gravesite={selectedGravesite}
+          sectionName={name}
           gravesitePrice={150000}
         />
       </Modal>
