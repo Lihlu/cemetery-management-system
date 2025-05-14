@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using CemeteryManagementSystem.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
@@ -12,9 +13,11 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace CemeteryManagementSystem.Migrations
 {
     [DbContext(typeof(CemeteryManagementSystemDbContext))]
-    partial class CemeteryManagementSystemDbContextModelSnapshot : ModelSnapshot
+    [Migration("20250512114451_AddIsBuried")]
+    partial class AddIsBuried
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -1590,17 +1593,14 @@ namespace CemeteryManagementSystem.Migrations
                     b.Property<long>("BookerId")
                         .HasColumnType("bigint");
 
-                    b.Property<int>("BookingStatus")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("BookingType")
-                        .HasColumnType("integer");
-
                     b.Property<DateTime>("CreationTime")
                         .HasColumnType("timestamp with time zone");
 
                     b.Property<long?>("CreatorUserId")
                         .HasColumnType("bigint");
+
+                    b.Property<DateTime>("DateAndTimeOfFuneral")
+                        .HasColumnType("timestamp with time zone");
 
                     b.Property<Guid>("DeceasedPersonId")
                         .HasColumnType("uuid");
@@ -1611,9 +1611,6 @@ namespace CemeteryManagementSystem.Migrations
                     b.Property<DateTime?>("DeletionTime")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<Guid>("GraveSiteId")
-                        .HasColumnType("uuid");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("boolean");
 
@@ -1623,9 +1620,6 @@ namespace CemeteryManagementSystem.Migrations
                     b.Property<long?>("LastModifierUserId")
                         .HasColumnType("bigint");
 
-                    b.Property<DateTime>("ServiceDateTime")
-                        .HasColumnType("timestamp with time zone");
-
                     b.Property<string>("SpecialRequest")
                         .HasColumnType("text");
 
@@ -1634,8 +1628,6 @@ namespace CemeteryManagementSystem.Migrations
                     b.HasIndex("BookerId");
 
                     b.HasIndex("DeceasedPersonId");
-
-                    b.HasIndex("GraveSiteId");
 
                     b.ToTable("Bookings");
                 });
@@ -2249,17 +2241,9 @@ namespace CemeteryManagementSystem.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("CemeteryManagementSystem.Domain.GraveSite.GraveSite", "GraveSite")
-                        .WithMany()
-                        .HasForeignKey("GraveSiteId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Booker");
 
                     b.Navigation("DeceasedPerson");
-
-                    b.Navigation("GraveSite");
                 });
 
             modelBuilder.Entity("CemeteryManagementSystem.Domain.Employee.Employee", b =>

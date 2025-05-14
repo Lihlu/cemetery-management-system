@@ -93,5 +93,5 @@ export const BookingReducer = handleActions<IBookingStateContext>(
       ...action.payload,
     }),
   },
-  INITIAL_STATE
+  INITIAL_STATE,
 );

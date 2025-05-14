@@ -30,5 +30,14 @@ namespace CemeteryManagementSystem.Domain.GraveSite
                 .Where(g => g.CemeterySectionId == sectionId)
                 .ToListAsync();
         }
+
+        public async Task<GraveSite> UpdateOwner(Guid gravesiteId, long ownerId)
+        {
+            var gravesite = await _graveSiteRepository.GetAsync(gravesiteId);
+            gravesite.OwnerId = ownerId;
+            gravesite.IsReserved = true;
+            await _graveSiteRepository.UpdateAsync(gravesite);
+            return gravesite;
+        }
     }
 }

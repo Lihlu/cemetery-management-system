@@ -25,5 +25,17 @@ namespace CemeteryManagementSystem.Domain.Bookings
 
             return bookings;
         }
+
+        public async Task<IEnumerable<Booking>> GetAllBookingsAsync()
+        {
+            var bookings = await _bookingRepository.GetAll()
+                .Include(b => b.Booker)
+                .Include(b => b.DeceasedPerson)
+                .Include(b => b.GraveSite)
+                .ToListAsync();
+
+            return bookings;
+        }
+
     }
 }

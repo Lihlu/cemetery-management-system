@@ -1,7 +1,7 @@
 "use client";
 import { Table, Button } from "antd";
 import { EditOutlined, EyeOutlined } from "@ant-design/icons";
-import { IBooking } from "@/providers/booking/context";
+import { IBooking } from "@/providers/booking/models";
 
 interface BookingTableProps {
   bookings: IBooking[];

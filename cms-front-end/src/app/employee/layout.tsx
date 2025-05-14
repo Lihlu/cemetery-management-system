@@ -1,29 +1,38 @@
 "use client";
-import { Layout, Menu, Button, Grid, Dropdown } from "antd";
+import { Layout, Button, Grid, Dropdown } from "antd";
 import {
   HomeOutlined,
   UserOutlined,
   LogoutOutlined,
   SearchOutlined,
+  EnvironmentOutlined,
+  CalendarOutlined,
 } from "@ant-design/icons";
 import { useStyles } from "./style/style";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import { useAuthState } from "@/providers/auth";
+import { useAuthActions, useAuthState } from "@/providers/auth";
 import BottomNav from "@/components/shared/bottom-nav/bottom-nav";
 import withAuth from "@/hoc/withAuth";
+import AppSider from "@/components/shared/app-sider/app-sider";
 
-const { Sider, Header, Content } = Layout;
+const { Header, Content } = Layout;
 const { useBreakpoint } = Grid;
 
-const employeeNavItems = [
+const menuItems = [
   { key: "/employee", label: "Home", icon: <HomeOutlined /> },
-  { key: "/employee/gravesite", label: "Gravesites", icon: <UserOutlined /> },
+  {
+    key: "/employee/gravesite",
+    label: "Gravesites",
+    icon: <EnvironmentOutlined />,
+  },
   { key: "/employee/search", label: "Search", icon: <SearchOutlined /> },
+  { key: "/employee/bookings", label: "Bookings", icon: <CalendarOutlined /> },
 ];
 
 const EmployeeLayout = ({ children }: { children: React.ReactNode }) => {
   const { currentUser } = useAuthState();
+  const { signOut } = useAuthActions();
   const { styles } = useStyles();
   const screens = useBreakpoint();
   const router = useRouter();
@@ -42,6 +51,7 @@ const EmployeeLayout = ({ children }: { children: React.ReactNode }) => {
         label: "Sign Out",
         icon: <LogoutOutlined />,
         onClick: () => {
+          signOut();
           router.replace("/");
         },
       },
@@ -51,19 +61,11 @@ const EmployeeLayout = ({ children }: { children: React.ReactNode }) => {
   return (
     <Layout className={styles.pageWrapper}>
       {!screens.xs && (
-        <Sider width={200} theme="light" className={styles.sider}>
-          <Menu
-            mode="inline"
-            selectedKeys={[activeKey]}
-            className={styles.menu}
-            onClick={({ key }) => handleNavClick(key.toString())}
-            items={employeeNavItems.map((item) => ({
-              key: item.key,
-              icon: item.icon,
-              label: item.label,
-            }))}
-          />
-        </Sider>
+        <AppSider
+          activeKey={activeKey}
+          handleNavClick={handleNavClick}
+          navItems={menuItems}
+        />
       )}
 
       <Layout className={styles.mainLayout}>
@@ -83,7 +85,7 @@ const EmployeeLayout = ({ children }: { children: React.ReactNode }) => {
       {/* Mobile Bottom Navbar */}
       {screens.xs && (
         <BottomNav
-          navItems={employeeNavItems.map((item) => ({
+          navItems={menuItems.map((item) => ({
             key: item.key,
             label: item.label,
             icon: item.icon,

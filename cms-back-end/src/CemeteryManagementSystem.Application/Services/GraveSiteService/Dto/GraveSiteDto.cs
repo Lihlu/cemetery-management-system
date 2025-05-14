@@ -20,6 +20,7 @@ namespace CemeteryManagementSystem.Services.GraveSiteService.Dto
         public int Column { get; set; }
         public string Occupant1IdNumber { get; set; }
         public string Occupant2IdNumber { get; set; }
+        public bool IsReserved { get; set; }
         public long OwnerId { get; set; }
     }
 }
