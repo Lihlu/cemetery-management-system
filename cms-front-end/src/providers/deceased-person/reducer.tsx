@@ -24,6 +24,20 @@ export const DeceasedPersonReducer = handleActions<IDeceasedPersonStateContext>(
       ...action.payload,
     }),
 
+    // Handling getByUserId actions
+    [DeceasedPersonActionEnums.getByUserIdPending]: (state, action) => ({
+      ...state,
+      ...action.payload,
+    }),
+    [DeceasedPersonActionEnums.getByUserIdSuccess]: (state, action) => ({
+      ...state,
+      ...action.payload,
+    }),
+    [DeceasedPersonActionEnums.getByUserIdError]: (state, action) => ({
+      ...state,
+      ...action.payload,
+    }),
+
     [DeceasedPersonActionEnums.resetStateFlagsAction]: (state, action) => ({
       ...state,
       ...action.payload,

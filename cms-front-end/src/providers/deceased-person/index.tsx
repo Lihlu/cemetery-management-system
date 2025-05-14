@@ -10,6 +10,9 @@ import {
 } from "./context";
 
 import {
+  getByUserIdError,
+  getByUserIdPending,
+  getByUserIdSuccess,
   resetStateFlagsAction,
   searchDeceasedPersonError,
   searchDeceasedPersonPending,
@@ -39,6 +42,21 @@ export const DeceasedPersonProvider = ({
         dispatch(searchDeceasedPersonError());
       });
   };
+
+  const getByUserId = async (userId: number) => {
+    dispatch(getByUserIdPending());
+    const endpoint: string = `/api/services/app/DeceasedPerson/GetByRegisteredBy?registeredByUserId=${userId}`;
+    await instance
+      .get(endpoint)
+      .then((response) => {
+        dispatch(getByUserIdSuccess(response.data.result));
+      })
+      .catch((error) => {
+        console.error(error);
+        dispatch(getByUserIdError());
+      });
+  };
+
   const resetStateFlags = () => {
     dispatch(resetStateFlagsAction());
   };
@@ -48,6 +66,7 @@ export const DeceasedPersonProvider = ({
       <DeceasedPersonActionContext.Provider
         value={{
           searchDeceasedPerson,
+          getByUserId,
           resetStateFlags,
         }}
       >

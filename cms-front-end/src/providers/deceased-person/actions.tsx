@@ -6,6 +6,10 @@ export enum DeceasedPersonActionEnums {
   searchDeceasedPersonSuccess = "SEARCH_DECEASED_PERSON_SUCCESS",
   searchDeceasedPersonError = "SEARCH_DECEASED_PERSON_ERROR",
 
+  getByUserIdPending = "GET_BY_USER_ID_PENDING",
+  getByUserIdSuccess = "GET_BY_USER_ID_SUCCESS",
+  getByUserIdError = "GET_BY_USER_ID_ERROR",
+
   resetStateFlagsAction = "RESET_STATE_FLAGS",
 }
 
@@ -31,6 +35,28 @@ export const searchDeceasedPersonError =
     DeceasedPersonActionEnums.searchDeceasedPersonError,
     () => ({ isPending: false, isSuccess: false, isError: true }),
   );
+
+export const getByUserIdPending = createAction<IDeceasedPersonStateContext>(
+  DeceasedPersonActionEnums.getByUserIdPending,
+  () => ({ isPending: true, isSuccess: false, isError: false }),
+);
+export const getByUserIdSuccess = createAction<
+  IDeceasedPersonStateContext,
+  IDeceasedPerson[]
+>(
+  DeceasedPersonActionEnums.getByUserIdSuccess,
+  (registeredDeceasedPersons: IDeceasedPerson[]) => ({
+    isPending: false,
+    isSuccess: true,
+    isError: false,
+    registeredDeceasedPersons,
+  }),
+);
+export const getByUserIdError = createAction<IDeceasedPersonStateContext>(
+  DeceasedPersonActionEnums.getByUserIdError,
+  () => ({ isPending: false, isSuccess: false, isError: true }),
+);
+
 export const resetStateFlagsAction = createAction<IDeceasedPersonStateContext>(
   DeceasedPersonActionEnums.resetStateFlagsAction,
   () => ({ isPending: false, isSuccess: false, isError: false }),
