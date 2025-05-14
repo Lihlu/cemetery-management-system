@@ -1,7 +1,7 @@
 "use client";
+import { IBooking } from "@/providers/booking/models";
 import { Modal, message } from "antd";
 import { useEffect, useState } from "react";
-import { IBooking } from "@/providers/booking/context";
 
 interface BookingModalProps {
   visible: boolean;
@@ -36,7 +36,7 @@ const BookingModal = ({
   const handleOk = async () => {
     if (!currentBooking) return;
 
-    if (!currentBooking.dateAndTimeOfFuneral) {
+    if (!currentBooking.dateAndTimeOfService) {
       message.error("Funeral date and time is required.");
       return;
     }
@@ -73,21 +73,21 @@ const BookingModal = ({
           </div>
 
           <div style={{ marginBottom: 16 }}>
-            <strong>Funeral Date & Time:</strong>
+            <strong>Service Date & Time:</strong>
             {editMode ? (
               <input
                 type="datetime-local"
                 onChange={(e) =>
                   setCurrentBooking({
                     ...currentBooking,
-                    dateAndTimeOfFuneral: e.target.value,
+                    dateAndTimeOfService: e.target.value,
                   })
                 }
                 style={{ width: "100%", padding: 8, marginTop: 4 }}
               />
             ) : (
               <div>
-                {formatDateForDisplay(currentBooking.dateAndTimeOfFuneral)}
+                {formatDateForDisplay(currentBooking.dateAndTimeOfService)}
               </div>
             )}
           </div>
