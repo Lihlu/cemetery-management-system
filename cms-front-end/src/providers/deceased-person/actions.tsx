@@ -10,9 +10,14 @@ export enum DeceasedPersonActionEnums {
   getByUserIdSuccess = "GET_BY_USER_ID_SUCCESS",
   getByUserIdError = "GET_BY_USER_ID_ERROR",
 
+  createDeceasedPersonPending = "CREATE_DECEASED_PERSON_PENDING",
+  createDeceasedPersonSuccess = "CREATE_DECEASED_PERSON_SUCCESS",
+  createDeceasedPersonError = "CREATE_DECEASED_PERSON_ERROR",
+
   resetStateFlagsAction = "RESET_STATE_FLAGS",
 }
 
+// Search Deceased Person Actions
 export const searchDeceasedPersonPending =
   createAction<IDeceasedPersonStateContext>(
     DeceasedPersonActionEnums.searchDeceasedPersonPending,
@@ -36,6 +41,7 @@ export const searchDeceasedPersonError =
     () => ({ isPending: false, isSuccess: false, isError: true }),
   );
 
+// Get Deceased Person by User ID Actions
 export const getByUserIdPending = createAction<IDeceasedPersonStateContext>(
   DeceasedPersonActionEnums.getByUserIdPending,
   () => ({ isPending: true, isSuccess: false, isError: false }),
@@ -57,6 +63,27 @@ export const getByUserIdError = createAction<IDeceasedPersonStateContext>(
   () => ({ isPending: false, isSuccess: false, isError: true }),
 );
 
+// Create Deceased Person Actions
+export const createDeceasedPersonPending =
+  createAction<IDeceasedPersonStateContext>(
+    DeceasedPersonActionEnums.createDeceasedPersonPending,
+    () => ({ isPending: true, isSuccess: false, isError: false }),
+  );
+export const createDeceasedPersonSuccess = createAction<
+  IDeceasedPersonStateContext,
+  IDeceasedPerson
+>(DeceasedPersonActionEnums.createDeceasedPersonSuccess, () => ({
+  isPending: false,
+  isSuccess: true,
+  isError: false,
+}));
+export const createDeceasedPersonError =
+  createAction<IDeceasedPersonStateContext>(
+    DeceasedPersonActionEnums.createDeceasedPersonError,
+    () => ({ isPending: false, isSuccess: false, isError: true }),
+  );
+
+// Reset State Flags Action
 export const resetStateFlagsAction = createAction<IDeceasedPersonStateContext>(
   DeceasedPersonActionEnums.resetStateFlagsAction,
   () => ({ isPending: false, isSuccess: false, isError: false }),

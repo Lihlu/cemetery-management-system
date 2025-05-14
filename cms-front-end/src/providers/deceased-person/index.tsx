@@ -5,11 +5,15 @@ import { DeceasedPersonReducer } from "./reducer";
 import {
   DeceasedPersonActionContext,
   DeceasedPersonStateContext,
+  IDeceasedPerson,
   INITIAL_STATE,
   ISearchDeceasedPerson,
 } from "./context";
 
 import {
+  createDeceasedPersonError,
+  createDeceasedPersonPending,
+  createDeceasedPersonSuccess,
   getByUserIdError,
   getByUserIdPending,
   getByUserIdSuccess,
@@ -57,6 +61,22 @@ export const DeceasedPersonProvider = ({
       });
   };
 
+  const createDeceasedPerson = async (deceasedPerson: IDeceasedPerson) => {
+    dispatch(createDeceasedPersonPending());
+    const endpoint: string = `/api/services/app/DeceasedPerson/Create`;
+    await instance
+      .post(endpoint, deceasedPerson)
+      .then((response) => {
+        if (response.status === 200) {
+          dispatch(createDeceasedPersonSuccess());
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        dispatch(createDeceasedPersonError());
+      });
+  };
+
   const resetStateFlags = () => {
     dispatch(resetStateFlagsAction());
   };
@@ -67,6 +87,7 @@ export const DeceasedPersonProvider = ({
         value={{
           searchDeceasedPerson,
           getByUserId,
+          createDeceasedPerson,
           resetStateFlags,
         }}
       >

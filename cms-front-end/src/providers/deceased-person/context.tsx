@@ -35,6 +35,7 @@ export interface IDeceasedPersonStateContext {
 export interface IDeceasedPersonActionContext {
   searchDeceasedPerson: (query: ISearchDeceasedPerson) => Promise<void>;
   getByUserId: (userId: number) => Promise<void>;
+  createDeceasedPerson: (deceasedPerson: IDeceasedPerson) => void;
   resetStateFlags: () => void;
 }
 
