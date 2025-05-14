@@ -4,6 +4,7 @@ import { GravesiteReducer } from "./reducer";
 import {
   GravesiteActionContext,
   GravesiteStateContext,
+  IGravesite,
   INITIAL_STATE,
 } from "./context";
 import {
@@ -17,6 +18,9 @@ import {
   getByCemeterySectionIdError,
   getByCemeterySectionIdSuccess,
   getByCemeterySectionIdPending,
+  updateGravesitePending,
+  updateGravesiteSuccess,
+  updateGravesiteError,
 } from "./actions";
 import { getAxiosInstance } from "@/utils/axios-instance";
 
@@ -76,6 +80,24 @@ export const GravesiteProvider = ({
       });
   };
 
+  const updateGravesite = async (gravesite: IGravesite) => {
+    dispatch(updateGravesitePending());
+
+    const endpoint: string = `/api/services/app/GraveSite/Update`;
+
+    await instance
+      .put(endpoint, gravesite)
+      .then((response) => {
+        if (response.status === 200) {
+          dispatch(updateGravesiteSuccess());
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        dispatch(updateGravesiteError());
+      });
+  };
+
   const resetStateFlags = () => {
     dispatch(resetStateFlagsAction());
   };
@@ -87,6 +109,7 @@ export const GravesiteProvider = ({
           resetStateFlags,
           getByOwnerId,
           getByCemeterySectionId,
+          updateGravesite,
         }}
       >
         {children}

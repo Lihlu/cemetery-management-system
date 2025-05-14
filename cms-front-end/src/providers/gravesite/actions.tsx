@@ -14,8 +14,14 @@ export enum GravesiteActionEnums {
   getByCemeterySectionIdSuccess = "GET_BY_CEMETERY_SECTION_ID_SUCCESS",
   getByCemeterySectionIdError = "GET_BY_CEMETERY_SECTION_ID_ERROR",
 
+  updateGravesitePending = "UPDATE_GRAVESITE_PENDING",
+  updateGravesiteSuccess = "UPDATE_GRAVESITE_SUCCESS",
+  updateGravesiteError = "UPDATE_GRAVESITE_ERROR",
+
   resetStateFlagsAction = "RESET_STATE_FLAGS",
 }
+
+// Get All Gravesites Actions
 export const getAllGravesitesPending = createAction<IGravesiteStateContext>(
   GravesiteActionEnums.getAllGravesitesPending,
   () => ({ isPending: true, isSuccess: false, isError: false }),
@@ -37,6 +43,7 @@ export const getAllGravesitesError = createAction<IGravesiteStateContext>(
   () => ({ isPending: false, isSuccess: false, isError: true }),
 );
 
+// Get By Owner Actions
 export const getByOwnerIdPending = createAction<IGravesiteStateContext>(
   GravesiteActionEnums.getByOwnerIdPending,
   () => ({ isPending: true, isSuccess: false, isError: false }),
@@ -55,6 +62,7 @@ export const getByOwnerIdError = createAction<IGravesiteStateContext>(
   () => ({ isPending: false, isSuccess: false, isError: true }),
 );
 
+// Get By Cemetery Section Actions
 export const getByCemeterySectionIdPending =
   createAction<IGravesiteStateContext>(
     GravesiteActionEnums.getByCemeterySectionIdPending,
@@ -74,6 +82,24 @@ export const getByCemeterySectionIdSuccess = createAction<
 );
 export const getByCemeterySectionIdError = createAction<IGravesiteStateContext>(
   GravesiteActionEnums.getByCemeterySectionIdError,
+  () => ({ isPending: false, isSuccess: false, isError: true }),
+);
+
+// Update Gravesite Actions
+export const updateGravesitePending = createAction<IGravesiteStateContext>(
+  GravesiteActionEnums.updateGravesitePending,
+  () => ({ isPending: true, isSuccess: false, isError: false }),
+);
+export const updateGravesiteSuccess = createAction<IGravesiteStateContext>(
+  GravesiteActionEnums.updateGravesiteSuccess,
+  () => ({
+    isPending: false,
+    isSuccess: true,
+    isError: false,
+  }),
+);
+export const updateGravesiteError = createAction<IGravesiteStateContext>(
+  GravesiteActionEnums.updateGravesiteError,
   () => ({ isPending: false, isSuccess: false, isError: true }),
 );
 

@@ -166,10 +166,7 @@ const SectionPage = () => {
         centered
         width={600}
       >
-        <PaymentForm
-          gravesiteName={selectedGravesite?.siteNumber || ""}
-          gravesitePrice={150000}
-        />
+        <PaymentForm gravesite={selectedGravesite} gravesitePrice={150000} />
       </Modal>
     </div>
   );
