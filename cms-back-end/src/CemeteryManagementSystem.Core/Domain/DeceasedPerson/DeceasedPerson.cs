@@ -13,6 +13,7 @@ namespace CemeteryManagementSystem.Domain.DeceasedPerson
         public DateTime DateOfFuneral { get; set; }
         public string GraveNumber { get; set; }
         public string Section { get; set; }
+        public long? RegisteredBy { get; set; }
         public bool isBuried { get; set; }
     }
 }
