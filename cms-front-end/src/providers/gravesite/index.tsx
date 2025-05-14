@@ -38,7 +38,9 @@ export const GravesiteProvider = ({
     const endpoint: string = `/api/services/app/GraveSite/GetAll`;
 
     await instance
-      .get(endpoint)
+      .get(endpoint, {
+        params: { skipCount: 0, maxResultCount: 1000, sorting: "siteNumber" },
+      })
       .then((response) => {
         dispatch(getAllGravesitesSuccess(response?.data?.result?.items));
       })
@@ -122,7 +124,7 @@ export const useGravesiteState = () => {
   const context = useContext(GravesiteStateContext);
   if (context === undefined) {
     throw new Error(
-      "useGravesiteState must be used within a GravesiteProvider",
+      "useGravesiteState must be used within a GravesiteProvider"
     );
   }
   return context;
@@ -131,7 +133,7 @@ export const useGravesiteActions = () => {
   const context = useContext(GravesiteActionContext);
   if (context === undefined) {
     throw new Error(
-      "useGravesiteActions must be used within a GravesiteProvider",
+      "useGravesiteActions must be used within a GravesiteProvider"
     );
   }
   return context;
