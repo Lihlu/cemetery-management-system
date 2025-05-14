@@ -5,15 +5,23 @@ import { YocoInlineInstance } from "@/types/yoco";
 import { useGravesiteActions } from "@/providers/gravesite";
 import { IGravesite } from "@/providers/gravesite/context";
 import { useAuthState } from "@/providers/auth";
+import { useEmailActions } from "@/providers/email";
+import { gravesitePurchaseTemplate } from "@/providers/email/email-templates/gravesite-purchase";
 
 interface PaymentFormProps {
   gravesite: IGravesite;
+  sectionName: string;
   gravesitePrice: number;
 }
 
-const PaymentForm = ({ gravesite, gravesitePrice }: PaymentFormProps) => {
+const PaymentForm = ({
+  gravesite,
+  sectionName,
+  gravesitePrice,
+}: PaymentFormProps) => {
   const { updateGravesite } = useGravesiteActions();
   const { currentUser } = useAuthState();
+  const { sendEmail } = useEmailActions();
   const [inlineInstance, setInlineInstance] =
     useState<YocoInlineInstance | null>(null);
   const [loading, setLoading] = useState(false);
@@ -62,6 +70,16 @@ const PaymentForm = ({ gravesite, gravesitePrice }: PaymentFormProps) => {
       isReserved: true,
     };
     updateGravesite(updatedGravesite);
+    sendEmail({
+      to: currentUser.emailAddress,
+      subject: "Gravesite Purchase Confirmation",
+      body: gravesitePurchaseTemplate(
+        currentUser.name,
+        gravesitePrice,
+        gravesite,
+        sectionName,
+      ),
+    });
   };
 
   const handlePayment = async () => {
