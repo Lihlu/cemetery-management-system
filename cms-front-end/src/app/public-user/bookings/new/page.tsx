@@ -1,7 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
 import { useAuthState } from "@/providers/auth";
-import { useBookingActions} from "@/providers/booking";
+import { useBookingActions } from "@/providers/booking";
 import { useGravesiteActions, useGravesiteState } from "@/providers/gravesite";
 import {
   useDeceasedPersonActions,
@@ -18,7 +18,11 @@ import {
 } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { useRouter } from "next/navigation";
-import { IBooking, ReflistBookingStatus, ReflistBookingType } from "@/providers/booking/models";
+import {
+  IBooking,
+  ReflistBookingStatus,
+  ReflistBookingType,
+} from "@/providers/booking/models";
 import { IDeceasedPerson } from "@/providers/deceased-person/context";
 import { IGravesite } from "@/providers/gravesite/context";
 
@@ -42,7 +46,7 @@ const NewBookingPage = () => {
     }
   }, [currentUser]);
 
-  const handleSubmit = async (values: any) => {
+  const handleSubmit = async (values) => {
     setIsSubmitting(true);
     try {
       const booking: IBooking = {
@@ -59,6 +63,7 @@ const NewBookingPage = () => {
       message.success("Booking created successfully");
       router.push("/public-user/bookings");
     } catch (error) {
+      console.log(error);
       message.error("Failed to create booking");
     } finally {
       setIsSubmitting(false);
@@ -77,7 +82,9 @@ const NewBookingPage = () => {
         <Form.Item
           name="deceasedPersonId"
           label="Select Deceased Person"
-          rules={[{ required: true, message: "Please select a deceased person" }]}
+          rules={[
+            { required: true, message: "Please select a deceased person" },
+          ]}
         >
           <Select placeholder="Select deceased">
             {registeredDeceasedPersons?.map((person: IDeceasedPerson) => (
@@ -116,8 +123,12 @@ const NewBookingPage = () => {
           rules={[{ required: true, message: "Please select booking type" }]}
         >
           <Select placeholder="Select booking type">
-            <Select.Option value={ReflistBookingType.Burial}>Burial</Select.Option>
-            <Select.Option value={ReflistBookingType.Exhumation}>Exhumation</Select.Option>
+            <Select.Option value={ReflistBookingType.Burial}>
+              Burial
+            </Select.Option>
+            <Select.Option value={ReflistBookingType.Exhumation}>
+              Exhumation
+            </Select.Option>
           </Select>
         </Form.Item>
 
