@@ -5,6 +5,12 @@ import { ReloadOutlined, SaveOutlined } from "@ant-design/icons";
 import { formatTextractResponse } from "@/utils/textract-helpers";
 import ExtractedTable from "@/components/employee/extracted-table/extracted-table";
 import DocumentUploader from "@/components/employee/document-uploader/document-uploader";
+import {
+  useDeceasedPersonActions,
+  useDeceasedPersonState,
+} from "@/providers/deceased-person";
+import { IDeceasedPerson } from "@/providers/deceased-person/context";
+import { toast } from "@/providers/toast/toast";
 
 const { Title } = Typography;
 
@@ -20,10 +26,28 @@ const DigitizePage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const [editingKey, setEditingKey] = useState("");
+  const { createMultiple } = useDeceasedPersonActions();
+  const { isPending, isSuccess } = useDeceasedPersonState();
+
   const fileInputRef = useRef<HTMLInputElement | null>(null);
   const [form] = Form.useForm();
 
   const isEditing = (record: ParsedDataItem) => record.key === editingKey;
+
+  const mapParsedToDeceased = (data: ParsedDataItem[]): IDeceasedPerson[] => {
+    return data.map((item) => ({
+      firstName: item["First Name"] || "",
+      lastName: item["Last Name"] || "",
+      idNumber: item["ID Number"] || "",
+      dateOfBirth: item["DOB"] || "",
+      dateOfDeath: item["DOD"] || "",
+      dateOfFuneral: item["Date of Funeral"] || "",
+      graveNumber: item["Grave Number"] || "",
+      section: item["Section"] || "",
+      isBuried: true,
+      registeredBy: null,
+    }));
+  };
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -87,7 +111,7 @@ const DigitizePage = () => {
       }
     } catch (err) {
       setError(
-        err.message || "An error occurred while processing the document",
+        err.message || "An error occurred while processing the document"
       );
     } finally {
       setIsLoading(false);
@@ -110,7 +134,6 @@ const DigitizePage = () => {
           .filter(Boolean);
         const parsed = formatTextractResponse(lines);
 
-        // Add keys to each row
         const dataWithKeys = (parsed?.table || []).map((item, index) => ({
           ...item,
           key: index.toString(),
@@ -159,13 +182,21 @@ const DigitizePage = () => {
         setParsedData(newData);
         setEditingKey("");
       }
-    } catch (errInfo) {
-      console.log("Validate Failed:", errInfo);
+    } catch (error) {
+      console.error("Validate Failed:", error);
+      toast(`Failed to save changes`, "error");
     }
   };
 
-  const saveAllEdits = () => {
-    console.log("Saving all edited data:", parsedData);
+  const saveAllEdits = async () => {
+    if (!parsedData || isPending) return;
+
+    try {
+      const mappedRecords = mapParsedToDeceased(parsedData);
+      await createMultiple(mappedRecords);
+    } catch (error) {
+      console.error("Failed to save records:", error);
+    }
   };
 
   return (
@@ -191,8 +222,14 @@ const DigitizePage = () => {
           Reset
         </Button>
         {parsedData && (
-          <Button type="primary" icon={<SaveOutlined />} onClick={saveAllEdits}>
-            Save All Edits
+          <Button
+            type="primary"
+            icon={<SaveOutlined />}
+            onClick={saveAllEdits}
+            loading={isPending}
+            disabled={isPending}
+          >
+            {isPending ? "Saving..." : "Save All Edits"}
           </Button>
         )}
       </Space>
@@ -226,6 +263,14 @@ const DigitizePage = () => {
       )}
 
       {isLoading && <Spin style={{ marginTop: 24 }} />}
+      {isSuccess && (
+        <Alert
+          message="All records were saved successfully."
+          type="success"
+          showIcon
+          style={{ marginBottom: 16 }}
+        />
+      )}
     </div>
   );
 };
