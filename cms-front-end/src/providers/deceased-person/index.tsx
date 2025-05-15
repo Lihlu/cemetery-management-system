@@ -14,6 +14,9 @@ import {
   createDeceasedPersonError,
   createDeceasedPersonPending,
   createDeceasedPersonSuccess,
+  createMultipleError,
+  createMultiplePending,
+  createMultipleSuccess,
   getByUserIdError,
   getByUserIdPending,
   getByUserIdSuccess,
@@ -77,6 +80,22 @@ export const DeceasedPersonProvider = ({
       });
   };
 
+  const createMultiple = async (recordList: IDeceasedPerson[]) => {
+    dispatch(createMultiplePending());
+    const endpoint: string = `/api/services/app/DeceasedPerson/CreateMultiple`;
+    await instance
+      .post(endpoint, recordList)
+      .then((response) => {
+        if (response.status === 200) {
+          dispatch(createMultipleSuccess());
+        }
+      })
+      .catch((error) => {
+        console.error(error);
+        dispatch(createMultipleError());
+      });
+  };
+
   const resetStateFlags = () => {
     dispatch(resetStateFlagsAction());
   };
@@ -88,6 +107,7 @@ export const DeceasedPersonProvider = ({
           searchDeceasedPerson,
           getByUserId,
           createDeceasedPerson,
+          createMultiple,
           resetStateFlags,
         }}
       >
@@ -100,7 +120,7 @@ export const useDeceasedPersonState = () => {
   const context = useContext(DeceasedPersonStateContext);
   if (context === undefined) {
     throw new Error(
-      "useDeceasedPersonState must be used within a DeceasedPersonProvider",
+      "useDeceasedPersonState must be used within a DeceasedPersonProvider"
     );
   }
   return context;
@@ -109,7 +129,7 @@ export const useDeceasedPersonActions = () => {
   const context = useContext(DeceasedPersonActionContext);
   if (context === undefined) {
     throw new Error(
-      "useDeceasedPersonActions must be used within a DeceasedPersonProvider",
+      "useDeceasedPersonActions must be used within a DeceasedPersonProvider"
     );
   }
   return context;

@@ -7,14 +7,14 @@ export const DeceasedPersonReducer = handleActions<IDeceasedPersonStateContext>(
     // Handling search actions
     [DeceasedPersonActionEnums.searchDeceasedPersonPending]: (
       state,
-      action,
+      action
     ) => ({
       ...state,
       ...action.payload,
     }),
     [DeceasedPersonActionEnums.searchDeceasedPersonSuccess]: (
       state,
-      action,
+      action
     ) => ({
       ...state,
       ...action.payload,
@@ -41,19 +41,33 @@ export const DeceasedPersonReducer = handleActions<IDeceasedPersonStateContext>(
     // Handling createDeceasedPerson actions
     [DeceasedPersonActionEnums.createDeceasedPersonPending]: (
       state,
-      action,
+      action
     ) => ({
       ...state,
       ...action.payload,
     }),
     [DeceasedPersonActionEnums.createDeceasedPersonSuccess]: (
       state,
-      action,
+      action
     ) => ({
       ...state,
       ...action.payload,
     }),
     [DeceasedPersonActionEnums.createDeceasedPersonError]: (state, action) => ({
+      ...state,
+      ...action.payload,
+    }),
+
+    // Handling actions to create multiple
+    [DeceasedPersonActionEnums.createMultiplePending]: (state, action) => ({
+      ...state,
+      ...action.payload,
+    }),
+    [DeceasedPersonActionEnums.createMultipleSuccess]: (state, action) => ({
+      ...state,
+      ...action.payload,
+    }),
+    [DeceasedPersonActionEnums.createMultipleError]: (state, action) => ({
       ...state,
       ...action.payload,
     }),
@@ -64,5 +78,5 @@ export const DeceasedPersonReducer = handleActions<IDeceasedPersonStateContext>(
       ...action.payload,
     }),
   },
-  INITIAL_STATE,
+  INITIAL_STATE
 );
