@@ -1,6 +1,5 @@
 export const formatTextractResponse = (textLines: string[]) => {
   const columnCount = 8;
-
   if (
     textLines.length >= columnCount * 2 &&
     textLines.length % columnCount === 0
