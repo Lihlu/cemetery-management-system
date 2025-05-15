@@ -24,7 +24,9 @@
     "next": "15.3.1",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "redux-actions": "^3.0.3"
+    "redux-actions": "^3.0.3",
+    "@aws-sdk/client-s3": "3.410.0",
+    "@aws-sdk/client-textract": "3.410.0"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
