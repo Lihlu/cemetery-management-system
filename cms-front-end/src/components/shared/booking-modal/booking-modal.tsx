@@ -61,7 +61,7 @@ const BookingModal = ({
       onOk={editMode ? handleOk : onClose}
       okText={editMode ? "Save" : "OK"}
       confirmLoading={isSaving}
-      destroyOnClose
+      destroyOnHidden
     >
       {currentBooking && (
         <div>

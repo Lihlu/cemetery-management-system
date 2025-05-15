@@ -8,6 +8,7 @@ import { CemeterySectionProvider } from "@/providers/cemetery-section";
 import { BookingProvider } from "@/providers/booking";
 import { GravesiteProvider } from "@/providers/gravesite";
 import { EmailProvider } from "@/providers/email";
+import CustomAntdProvider from "@/providers/config/config-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -38,11 +39,13 @@ export default function RootLayout({
             <GravesiteProvider>
               <BookingProvider>
                 <EmailProvider>
-                  <body
-                    className={`${geistSans.variable} ${geistMono.variable}`}
-                  >
-                    {children}
-                  </body>
+                  <CustomAntdProvider>
+                    <body
+                      className={`${geistSans.variable} ${geistMono.variable}`}
+                    >
+                      {children}
+                    </body>
+                  </CustomAntdProvider>
                 </EmailProvider>
               </BookingProvider>
             </GravesiteProvider>

@@ -14,10 +14,10 @@ export enum ReflistBookingType {
 }
 
 export interface IBooking {
-  id: string;
+  id?: string;
   bookerId: string;
   deceasedPersonId: string;
-  deceasedPerson: IDeceasedPerson;
+  deceasedPerson?: IDeceasedPerson;
   graveSiteId: string;
   dateAndTimeOfService: string;
   bookingType: ReflistBookingType;
