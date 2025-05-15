@@ -106,7 +106,5 @@ namespace CemeteryManagementSystem.Domain.DeceasedPerson
             return persons;
         }
 
-
-
     }
 }
