@@ -29,8 +29,9 @@ const CustomAntdProvider: React.FC<{ children: React.ReactNode }> = ({
           },
           Button: {
             colorPrimary: colors.primary,
-            colorText: "#ffffff",
+            colorTextLightSolid: "#ffffff",
           },
+          
         },
         algorithm: antdTheme.defaultAlgorithm,
       }}

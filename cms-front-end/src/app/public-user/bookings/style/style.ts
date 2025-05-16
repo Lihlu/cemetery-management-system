@@ -180,5 +180,34 @@ export const useStyles = createStyles(({ css, token }) => {
       color: #5555c2;
       border-color: #5555c2;
     `,
+    cardContainer: css`
+      display: grid;
+      gap: 16px;
+      grid-template-columns: 1fr;
+
+      @media (min-width: 768px) {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      @media (min-width: 1200px) {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    `,
+
+    card: css`
+      border-radius: 12px;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.06);
+    `,
+
+    cardHeader: css`
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    `,
+
+    cardActions: css`
+      display: flex;
+      gap: 8px;
+    `,
   };
 });

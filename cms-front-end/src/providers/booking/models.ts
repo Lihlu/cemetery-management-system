@@ -28,7 +28,7 @@ export interface IBooking {
 export interface IBookingWithBookerInfo extends IBooking {
   bookerName: string;
   deceasedPersonName: string;
-  deceasedPersonEmail: string;
+  bookerEmail: string;
   graveSiteNumber: string;
 }
 export const BookingStatusLabels: Record<ReflistBookingStatus, string> = {

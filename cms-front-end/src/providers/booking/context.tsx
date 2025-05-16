@@ -7,7 +7,7 @@ export interface IBookingStateContext {
   isSuccess: boolean;
   isError: boolean;
   booking?: IBooking;
-  bookingList?: IBooking[];
+  bookingList?: IBookingWithBookerInfo[];
   fullBookingList?: IBookingWithBookerInfo[];
 }
 export interface IBookingActionContext {
