@@ -36,6 +36,7 @@ export interface IDeceasedPersonActionContext {
   searchDeceasedPerson: (query: ISearchDeceasedPerson) => Promise<void>;
   getByUserId: (userId: number) => Promise<void>;
   createDeceasedPerson: (deceasedPerson: IDeceasedPerson) => void;
+  createMultiple: (recordList: IDeceasedPerson[]) => void;
   resetStateFlags: () => void;
 }
 

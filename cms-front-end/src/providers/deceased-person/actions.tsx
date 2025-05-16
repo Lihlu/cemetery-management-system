@@ -14,6 +14,10 @@ export enum DeceasedPersonActionEnums {
   createDeceasedPersonSuccess = "CREATE_DECEASED_PERSON_SUCCESS",
   createDeceasedPersonError = "CREATE_DECEASED_PERSON_ERROR",
 
+  createMultiplePending = "CREATE_MULTIPLE_PENDING",
+  createMultipleSuccess = "CREATE_MULTIPLE_SUCCESS",
+  createMultipleError = "CREATE_MULTIPLE_ERROR",
+
   resetStateFlagsAction = "RESET_STATE_FLAGS",
 }
 
@@ -21,7 +25,7 @@ export enum DeceasedPersonActionEnums {
 export const searchDeceasedPersonPending =
   createAction<IDeceasedPersonStateContext>(
     DeceasedPersonActionEnums.searchDeceasedPersonPending,
-    () => ({ isPending: true, isSuccess: false, isError: false }),
+    () => ({ isPending: true, isSuccess: false, isError: false })
   );
 export const searchDeceasedPersonSuccess = createAction<
   IDeceasedPersonStateContext,
@@ -33,18 +37,18 @@ export const searchDeceasedPersonSuccess = createAction<
     isSuccess: true,
     isError: false,
     searchResults,
-  }),
+  })
 );
 export const searchDeceasedPersonError =
   createAction<IDeceasedPersonStateContext>(
     DeceasedPersonActionEnums.searchDeceasedPersonError,
-    () => ({ isPending: false, isSuccess: false, isError: true }),
+    () => ({ isPending: false, isSuccess: false, isError: true })
   );
 
 // Get Deceased Person by User ID Actions
 export const getByUserIdPending = createAction<IDeceasedPersonStateContext>(
   DeceasedPersonActionEnums.getByUserIdPending,
-  () => ({ isPending: true, isSuccess: false, isError: false }),
+  () => ({ isPending: true, isSuccess: false, isError: false })
 );
 export const getByUserIdSuccess = createAction<
   IDeceasedPersonStateContext,
@@ -56,18 +60,18 @@ export const getByUserIdSuccess = createAction<
     isSuccess: true,
     isError: false,
     registeredDeceasedPersons,
-  }),
+  })
 );
 export const getByUserIdError = createAction<IDeceasedPersonStateContext>(
   DeceasedPersonActionEnums.getByUserIdError,
-  () => ({ isPending: false, isSuccess: false, isError: true }),
+  () => ({ isPending: false, isSuccess: false, isError: true })
 );
 
 // Create Deceased Person Actions
 export const createDeceasedPersonPending =
   createAction<IDeceasedPersonStateContext>(
     DeceasedPersonActionEnums.createDeceasedPersonPending,
-    () => ({ isPending: true, isSuccess: false, isError: false }),
+    () => ({ isPending: true, isSuccess: false, isError: false })
   );
 export const createDeceasedPersonSuccess = createAction<
   IDeceasedPersonStateContext,
@@ -80,11 +84,38 @@ export const createDeceasedPersonSuccess = createAction<
 export const createDeceasedPersonError =
   createAction<IDeceasedPersonStateContext>(
     DeceasedPersonActionEnums.createDeceasedPersonError,
-    () => ({ isPending: false, isSuccess: false, isError: true }),
+    () => ({ isPending: false, isSuccess: false, isError: true })
   );
+
+export const createMultiplePending = createAction<IDeceasedPersonStateContext>(
+  DeceasedPersonActionEnums.createMultiplePending,
+  () => ({
+    isPending: true,
+    isSuccess: false,
+    isError: false,
+  })
+);
+
+export const createMultipleSuccess = createAction<IDeceasedPersonStateContext>(
+  DeceasedPersonActionEnums.createMultipleSuccess,
+  () => ({
+    isPending: false,
+    isSuccess: true,
+    isError: false,
+  })
+);
+
+export const createMultipleError = createAction<IDeceasedPersonStateContext>(
+  DeceasedPersonActionEnums.createMultipleError,
+  () => ({
+    isPending: false,
+    isSuccess: false,
+    isError: true,
+  })
+);
 
 // Reset State Flags Action
 export const resetStateFlagsAction = createAction<IDeceasedPersonStateContext>(
   DeceasedPersonActionEnums.resetStateFlagsAction,
-  () => ({ isPending: false, isSuccess: false, isError: false }),
+  () => ({ isPending: false, isSuccess: false, isError: false })
 );

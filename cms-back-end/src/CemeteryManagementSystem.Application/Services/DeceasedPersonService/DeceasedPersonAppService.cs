@@ -59,5 +59,33 @@ namespace CemeteryManagementSystem.Services.DeceasedPersonService
             return ObjectMapper.Map<List<DeceasedPersonDto>>(persons);
         }
 
+        public async Task<string> CreateMultiple(List<DeceasedPersonDto> persons)
+        {
+            try
+            {
+
+                foreach (var person in persons)
+                {
+
+                    await _deceasedPersonManager.CreateDeceasedPersonAsync(
+                    person.FirstName,
+                    person.LastName,
+                    person.DateOfBirth,
+                    person.DateOfDeath,
+                    person.DateOfFuneral,
+                    person.GraveNumber,
+                    person.Section,
+                    person.IdNumber,
+                    null
+                    );
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+
+            return "Successfully saved";
+        }
     }
 }

@@ -63,7 +63,7 @@ const NewBookingPage = () => {
       message.success("Booking created successfully");
       router.push("/public-user/bookings");
     } catch (error) {
-      console.log(error);
+      console.error(error);
       message.error("Failed to create booking");
     } finally {
       setIsSubmitting(false);

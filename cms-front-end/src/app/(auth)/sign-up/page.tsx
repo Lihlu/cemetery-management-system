@@ -32,7 +32,6 @@ const SignUp: React.FC = () => {
   const handleSignUp = async (values: ISignUpData) => {
     try {
       await signUp(values);
-      debugger;
       const emailData: IEmail = {
         to: values.email,
         subject: "Account Created",
@@ -204,7 +203,7 @@ const SignUp: React.FC = () => {
                       return Promise.resolve();
                     }
                     return Promise.reject(
-                      new Error("The two passwords do not match!"),
+                      new Error("The two passwords do not match!")
                     );
                   },
                 }),

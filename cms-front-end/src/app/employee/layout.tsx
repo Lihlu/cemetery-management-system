@@ -28,6 +28,7 @@ const menuItems = [
   },
   { key: "/employee/search", label: "Search", icon: <SearchOutlined /> },
   { key: "/employee/bookings", label: "Bookings", icon: <CalendarOutlined /> },
+  { key: "/employee/digitize", label: "Digitize", icon: <UserOutlined /> },
 ];
 
 const EmployeeLayout = ({ children }: { children: React.ReactNode }) => {

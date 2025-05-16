@@ -77,7 +77,7 @@ const PaymentForm = ({
         currentUser.name,
         gravesitePrice,
         gravesite,
-        sectionName,
+        sectionName
       ),
     });
   };
@@ -97,7 +97,6 @@ const PaymentForm = ({
         alert(result.error.message);
         return;
       }
-      console.log(gravesite);
       await instance.post(`/api/services/app/Payment/Charge`, {
         token: result.id,
         amount: gravesitePrice,
