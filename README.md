@@ -23,6 +23,10 @@ Together, they deliver a full-featured system to digitize and streamline cemeter
 
 ---
 
+## Domain Model
+
+- https://lucid.app/lucidchart/5c6ed5c6-e410-4b1d-abbe-580fb6283d37/edit?page=0_0&invitationId=inv_b17477ab-73be-44e1-a0f1-92610430251c#
+
 ## 📦 Technologies Used
 
 ### Frontend (cms-front-end)
