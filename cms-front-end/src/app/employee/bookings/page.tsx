@@ -39,7 +39,7 @@ const BookingsPage = () => {
       columns={[
         {
           title: "Date & Time",
-          dataIndex: "dateAndTimeOfService",
+          dataIndex: "serviceDateTime",
           render: (value: string) =>
             value ? dayjs(value).format("YYYY-MM-DD HH:mm") : "N/A",
         },
