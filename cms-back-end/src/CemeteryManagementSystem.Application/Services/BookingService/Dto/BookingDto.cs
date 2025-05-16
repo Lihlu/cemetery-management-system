@@ -20,7 +20,7 @@ namespace CemeteryManagementSystem.Services.BookingService.Dto
         public Guid GraveSiteId { get; set; }
 
         [Required]
-        public DateTime DateAndTimeOfService { get; set; }
+        public DateTime ServiceDateTime { get; set; }
 
         [Required]
         public ReflistBookingType BookingType { get; set; }

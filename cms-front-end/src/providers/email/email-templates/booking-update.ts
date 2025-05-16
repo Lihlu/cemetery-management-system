@@ -24,7 +24,7 @@ export const bookingUpdateTemplate = (
       <h3 style="color: #4B8B3B;">📋 Updated Booking Details:</h3>
       <ul>
         <li><strong>Deceased Person:</strong> ${deceasedPerson?.firstName ?? ""} ${deceasedPerson?.lastName ?? ""}</li>
-        <li><strong>Service Date & Time:</strong> ${new Date(updatedBooking.dateAndTimeOfService).toLocaleString()}</li>
+        <li><strong>Service Date & Time:</strong> ${new Date(updatedBooking.serviceDateTime).toLocaleString()}</li>
         <li><strong>Booking Type:</strong> ${bookingTypeLabel}</li>
         <li><strong>Status:</strong> ${statusLabel}</li>
         <li><strong>Special Request:</strong> ${updatedBooking.specialRequest || "None"}</li>

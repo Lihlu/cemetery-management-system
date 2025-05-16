@@ -53,7 +53,7 @@ const NewBookingPage = () => {
         bookerId: currentUser!.id.toString(),
         deceasedPersonId: values.deceasedPersonId,
         graveSiteId: values.graveSiteId,
-        dateAndTimeOfService: values.dateAndTimeOfService.toISOString(),
+        serviceDateTime: values.serviceDateTime.toISOString(),
         bookingType: values.bookingType,
         bookingStatus: ReflistBookingStatus.Pending,
         specialRequest: values.specialRequest || "",
@@ -110,7 +110,7 @@ const NewBookingPage = () => {
         </Form.Item>
 
         <Form.Item
-          name="dateAndTimeOfService"
+          name="serviceDateTime"
           label="Date and Time of Service"
           rules={[{ required: true, message: "Please select date and time" }]}
         >
