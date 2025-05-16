@@ -1,5 +1,4 @@
 "use client";
-import CemeteryMap from "@/components/shared/cemetery-map/cemetery-map";
 import {
   useCemeterySectionActions,
   useCemeterySectionState,

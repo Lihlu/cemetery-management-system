@@ -84,7 +84,7 @@ const CemeteryCharts: React.FC<CemeteryChartsProps> = ({ sections }) => {
                   outerRadius={100}
                   label
                 >
-                  {occupancyData.map((entry, index) => (
+                  {occupancyData.map((_, index) => (
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>
@@ -105,7 +105,7 @@ const CemeteryCharts: React.FC<CemeteryChartsProps> = ({ sections }) => {
                   outerRadius={100}
                   label
                 >
-                  {sectionTypeDistribution.map((entry, index) => (
+                  {sectionTypeDistribution.map((_, index) => (
                     <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
                   ))}
                 </Pie>
