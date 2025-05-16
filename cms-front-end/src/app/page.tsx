@@ -53,20 +53,12 @@ const LandingPage = () => {
           />{" "}
           Memoria
         </div>
-        <div className={styles.mobileMenuButton} onClick={toggleMenu}>
-          <div className={styles.menuBar}></div>
-          <div className={styles.menuBar}></div>
-          <div className={styles.menuBar}></div>
-        </div>
         <Menu
           theme="light"
           mode="horizontal"
           className={`${styles.menu} ${menuVisible ? styles.mobileMenuVisible : ""}`}
         >
-          <Menu.Item key="features">Features</Menu.Item>
-          <Menu.Item key="pricing">Pricing</Menu.Item>
-          <Menu.Item key="about">About Us</Menu.Item>
-          <Menu.Item key="contact">Contact</Menu.Item>
+
         </Menu>
         <div className={styles.authButtons}>
           <Button type="text" onClick={() => handleNavigation("/login")}>
@@ -154,15 +146,6 @@ const LandingPage = () => {
             </Col>
             <Col xs={24} sm={12} lg={8}>
               <Card className={styles.featureCard}>
-                <TeamOutlined className={styles.featureIcon} />
-                <Title level={4}>Funeral Parlour Portal</Title>
-                <Paragraph>
-                  Empower funeral parlours to manage client bookings securely.
-                </Paragraph>
-              </Card>
-            </Col>
-            <Col xs={24} sm={12} lg={8}>
-              <Card className={styles.featureCard}>
                 <CreditCardOutlined className={styles.featureIcon} />
                 <Title level={4}>Secure Payments</Title>
                 <Paragraph>
@@ -176,24 +159,6 @@ const LandingPage = () => {
                 <Title level={4}>Digital Records</Title>
                 <Paragraph>
                   Digitize and preserve vital documents with human verification.
-                </Paragraph>
-              </Card>
-            </Col>
-            <Col xs={24} sm={12} lg={8}>
-              <Card className={styles.featureCard}>
-                <MailOutlined className={styles.featureIcon} />
-                <Title level={4}>Notifications</Title>
-                <Paragraph>
-                  Keep users updated with confirmations and gentle reminders.
-                </Paragraph>
-              </Card>
-            </Col>
-            <Col xs={24} sm={12} lg={8}>
-              <Card className={styles.featureCard}>
-                <ScheduleOutlined className={styles.featureIcon} />
-                <Title level={4}>Balanced Scheduling</Title>
-                <Paragraph>
-                  Optimize service planning to avoid conflicts or overlaps.
                 </Paragraph>
               </Card>
             </Col>
