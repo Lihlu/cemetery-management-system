@@ -19,7 +19,9 @@ namespace CemeteryManagementSystem.Domain.Bookings
         public async Task<IEnumerable<Booking>> GetBookingsByUserId(long userId)
         {
             var bookings = await _bookingRepository.GetAll()
-                 .Include(b => b.DeceasedPerson)
+                .Include(b => b.Booker)
+                .Include(b => b.DeceasedPerson)
+                .Include(b => b.GraveSite)
                  .Where(b => b.BookerId == userId)
                  .ToListAsync();
 
