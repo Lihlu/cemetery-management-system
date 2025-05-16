@@ -76,7 +76,8 @@ namespace CemeteryManagementSystem.Services.DeceasedPersonService
                     person.GraveNumber,
                     person.Section,
                     person.IdNumber,
-                    null
+                    null,
+                    true
                     );
                 }
             }
