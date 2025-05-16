@@ -1,10 +1,9 @@
 "use client";
-import React, { useState } from "react";
+import React from "react";
 import Image from "next/image";
 import {
   Button,
   Layout,
-  Menu,
   Typography,
   Row,
   Col,
@@ -12,14 +11,11 @@ import {
   Divider,
 } from "antd";
 import {
-  TeamOutlined,
   AppstoreOutlined,
-  MailOutlined,
   CalendarOutlined,
   EnvironmentOutlined,
   CreditCardOutlined,
   FileTextOutlined,
-  ScheduleOutlined,
 } from "@ant-design/icons";
 import { useRouter } from "next/navigation";
 import { useLandingStyles } from "./style/style";
@@ -30,16 +26,10 @@ const { Title, Paragraph } = Typography;
 const LandingPage = () => {
   const { styles } = useLandingStyles();
   const router = useRouter();
-  const [menuVisible, setMenuVisible] = useState(false);
 
   const handleNavigation = (path: string) => {
     router.push(path);
   };
-
-  const toggleMenu = () => {
-    setMenuVisible(!menuVisible);
-  };
-
   return (
     <Layout className={styles.layout}>
       {/* Header Navigation */}
@@ -53,13 +43,6 @@ const LandingPage = () => {
           />{" "}
           Memoria
         </div>
-        <Menu
-          theme="light"
-          mode="horizontal"
-          className={`${styles.menu} ${menuVisible ? styles.mobileMenuVisible : ""}`}
-        >
-
-        </Menu>
         <div className={styles.authButtons}>
           <Button type="text" onClick={() => handleNavigation("/login")}>
             Log in
