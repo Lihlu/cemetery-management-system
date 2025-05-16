@@ -7,8 +7,8 @@ import { Button, Typography, Spin, Empty, Alert } from "antd";
 import { PlusOutlined } from "@ant-design/icons";
 import { useStyles } from "./style/style";
 import BookingModal from "@/components/shared/booking-modal/booking-modal";
-import BookingTable from "@/components/shared/booking-table/booking-table";
 import { IBooking } from "@/providers/booking/models";
+import BookingCardList from "@/components/public-user/booking-card-list/booking-card-list";
 
 const { Title } = Typography;
 
@@ -46,7 +46,7 @@ const BookingsPage = () => {
 
   const showContent = () => {
     return bookingList?.length ? (
-      <BookingTable
+      <BookingCardList
         bookings={bookingList}
         onEdit={(b) => openModal(b, true)}
         onView={(b) => openModal(b, false)}

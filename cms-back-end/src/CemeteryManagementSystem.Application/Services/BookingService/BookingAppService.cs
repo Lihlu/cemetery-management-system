@@ -28,11 +28,11 @@ namespace CemeteryManagementSystem.Services.BookingService
             return new PagedResultDto<BookingResponseDto>(totalCount, result);
         }
 
-        public async Task<List<BookingDto>> GetByUserId(long userId)
+        public async Task<List<BookingResponseDto>> GetByUserId(long userId)
         {
             var bookings = await _bookingManager.GetBookingsByUserId(userId);
 
-            var result = ObjectMapper.Map<List<BookingDto>>(bookings);
+            var result = ObjectMapper.Map<List<BookingResponseDto>>(bookings);
 
             return result;
         }
