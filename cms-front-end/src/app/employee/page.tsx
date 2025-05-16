@@ -7,6 +7,7 @@ import {
 import { Spin } from "antd";
 import React, { useEffect } from "react";
 import { useStyles } from "./style/style";
+import CemeteryCharts from "@/components/employee/cemetery-charts/cemetery-charts";
 
 const EmployeePage = () => {
   const { sections } = useCemeterySectionState();
@@ -20,9 +21,9 @@ const EmployeePage = () => {
   }, [sections]);
   return (
     <div>
-      <h1>Employee Page</h1>
+      <h1>Overview</h1>
       {sections ? (
-        <CemeteryMap sections={sections} />
+        <CemeteryCharts sections={sections} />
       ) : (
         <div className={styles.loadingOverlay}>
           <Spin size="large" />
