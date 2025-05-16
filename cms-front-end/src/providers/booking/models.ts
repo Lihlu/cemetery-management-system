@@ -19,7 +19,7 @@ export interface IBooking {
   deceasedPersonId: string;
   deceasedPerson?: IDeceasedPerson;
   graveSiteId: string;
-  dateAndTimeOfService: string;
+  serviceDateTime: string;
   bookingType: ReflistBookingType;
   bookingStatus: ReflistBookingStatus;
   specialRequest: string;

@@ -36,7 +36,7 @@ const BookingModal = ({
   const handleOk = async () => {
     if (!currentBooking) return;
 
-    if (!currentBooking.dateAndTimeOfService) {
+    if (!currentBooking.serviceDateTime) {
       message.error("Funeral date and time is required.");
       return;
     }
@@ -80,14 +80,14 @@ const BookingModal = ({
                 onChange={(e) =>
                   setCurrentBooking({
                     ...currentBooking,
-                    dateAndTimeOfService: e.target.value,
+                    serviceDateTime: e.target.value,
                   })
                 }
                 style={{ width: "100%", padding: 8, marginTop: 4 }}
               />
             ) : (
               <div>
-                {formatDateForDisplay(currentBooking.dateAndTimeOfService)}
+                {formatDateForDisplay(currentBooking.serviceDateTime)}
               </div>
             )}
           </div>
