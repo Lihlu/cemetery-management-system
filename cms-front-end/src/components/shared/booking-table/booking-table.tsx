@@ -27,8 +27,8 @@ const BookingTable = ({
     },
     {
       title: "Funeral Date & Time",
-      dataIndex: "dateAndTimeOfFuneral",
-      key: "dateAndTimeOfService",
+      dataIndex: "serviceDateTime",
+      key: "serviceDateTime",
       render: (text: string) => {
         const date = new Date(text);
         return isNaN(date.getTime()) ? "N/A" : date.toLocaleString();

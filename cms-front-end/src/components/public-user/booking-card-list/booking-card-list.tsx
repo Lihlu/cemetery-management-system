@@ -52,7 +52,7 @@ const BookingCardList = ({ bookings, onEdit, onView, styles }: Props) => {
             </Text>
             <Text>
               <strong>Date & Time:</strong>{" "}
-              {dayjs(booking.dateAndTimeOfService).format("DD MMM YYYY, h:mm A")}
+              {dayjs(booking.serviceDateTime).format("DD MMM YYYY, h:mm A")}
             </Text>
             <Text>
               <strong>Booking Type:</strong>{" "}
